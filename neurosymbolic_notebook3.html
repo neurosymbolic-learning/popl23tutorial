@@ -1,0 +1,2142 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Part 2 &#8212; Neurosymbolic Programming Tutorials</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">Neurosymbolic Programming Tutorials</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="README.html">
+                    Neurosymbolic Programming Tutorial (POPL23)
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="http://www.neurosymbolic.org/">
+   Neurosymbolic Website
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://colab.research.google.com/github/neurosymbolic-learning/Neurosymbolic_Tutorial/blob/popl23/webbook/neurosymbolic_notebook3.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/neurosymbolic-learning/Neurosymbolic_Tutorial"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/neurosymbolic-learning/Neurosymbolic_Tutorial/issues/new?title=Issue%20on%20page%20%2Fneurosymbolic_notebook3.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/neurosymbolic_notebook3.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Part 2
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#instructions">
+     Instructions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#important-convert-notebooks-to-python-files">
+   (Important!) Convert Notebooks to Python Files
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neural-relaxation-exercise">
+   Neural Relaxation Exercise
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-of-a-symbolic-program">
+     Example of a symbolic program
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-of-a-neurosymbolic-program">
+     Example of a Neurosymbolic Program
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-of-a-neural-module">
+     Example of a Neural Module
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#near-astar-search">
+   NEAR: Astar Search
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#near-with-base-dsl">
+     NEAR with Base DSL
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#near-with-morlet-dsl">
+     NEAR with Morlet DSL
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualizing-runtime-vs-accuracy">
+   Visualizing Runtime vs. Accuracy
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-open-ended-exploration">
+   [Optional] Open-Ended Exploration
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-modify-architecture-of-atomtoatom-heuristic">
+   [Optional] Modify Architecture of AtomToAtom Heuristic
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-near-iddfs-search-morlet-dsl">
+   [Optional] NEAR: IDDFS Search - Morlet DSL
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-additional-experiments-test-on-other-behavior-classes">
+   [Optional] Additional Experiments: Test on Other Behavior Classes
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Part 2</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Part 2
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#instructions">
+     Instructions
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#important-convert-notebooks-to-python-files">
+   (Important!) Convert Notebooks to Python Files
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#neural-relaxation-exercise">
+   Neural Relaxation Exercise
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-of-a-symbolic-program">
+     Example of a symbolic program
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-of-a-neurosymbolic-program">
+     Example of a Neurosymbolic Program
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#example-of-a-neural-module">
+     Example of a Neural Module
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#near-astar-search">
+   NEAR: Astar Search
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#near-with-base-dsl">
+     NEAR with Base DSL
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#near-with-morlet-dsl">
+     NEAR with Morlet DSL
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualizing-runtime-vs-accuracy">
+   Visualizing Runtime vs. Accuracy
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-open-ended-exploration">
+   [Optional] Open-Ended Exploration
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-modify-architecture-of-atomtoatom-heuristic">
+   [Optional] Modify Architecture of AtomToAtom Heuristic
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-near-iddfs-search-morlet-dsl">
+   [Optional] NEAR: IDDFS Search - Morlet DSL
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#optional-additional-experiments-test-on-other-behavior-classes">
+   [Optional] Additional Experiments: Test on Other Behavior Classes
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="part-2">
+<h1>Part 2<a class="headerlink" href="#part-2" title="Permalink to this headline">#</a></h1>
+<section id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">#</a></h2>
+<p><strong>README</strong></p>
+<ul>
+<li><p><strong>Navigating this notebook on Google Colab:</strong> There will be text blocks and code blocks throughout the notebook. The text blocks, such as this one, will contain instructions and questions for you to consider. The code blocks, such as the one below, will contain executible code.  Sometimes you will have to modify the code blocks following the instructions in the text blocks. You can run the code block by either pressing <code class="docutils literal notranslate"><span class="pre">control/cmd</span> <span class="pre">+</span> <span class="pre">enter</span></code> or by clicking the arrow on left-hand side as shown.</p>
+<p><img alt="img.png" src="_images/guide.png" /></p>
+</li>
+<li><p><strong>Saving Work</strong>: If you wish to save your work in this <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>, we recommend <a class="reference external" href="https://colab.research.google.com/drive/158b2-QhmlNnftfP0nOhYZK3UnOTmcAo-?authuser=1#scrollTo=Yw_du6e3fShY&amp;line=4&amp;uniqifier=1">downloading</a> the compressed repository from GitHub, unzipping it, uploading it to Google Drive, opening this notebook from within Google Drive, and setting <code class="docutils literal notranslate"><span class="pre">WITHIN_GDRIVE</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
+<li><p>This notebook doesn’t require any modifications inside the <code class="docutils literal notranslate"><span class="pre">code_and_data</span></code> directory for a base walkthrough, but if you want to work on the optional exercises throughout the notebook, you will need to modify <code class="docutils literal notranslate"><span class="pre">dsl.ipynb</span></code>.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># (Optional) Are you loading data from within Google Drive?</span>
+<span class="n">WITHIN_GDRIVE</span> <span class="o">=</span> <span class="kc">False</span> <span class="c1"># otherwise: True</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span># Setup repository and download toy CalMS21 data
+if not WITHIN_GDRIVE:
+  !git clone https://github.com/neurosymbolic-learning/Neurosymbolic_Tutorial.git /content/Neurosymbolic_Tutorial
+  %cd /content/Neurosymbolic_Tutorial/code_and_data
+  !gdown 1XPUF4n5iWhQw8v1ujAqDpFefJUVEoT4L &amp;&amp; (unzip -o calms21_task1.zip; rm -rf calms21_task1.zip )
+else:
+  from google.colab import drive
+  drive.mount(&#39;/content/drive&#39;)
+  # Change this path to match the corect destination
+  %cd /content/drive/MyDrive/Neurosymbolic_Tutorial/code_and_data/
+  import os; assert os.path.exists(&quot;dsl.py&quot;), f&quot;Couldn&#39;t find `dsl.py` at this location {os.getcwd()}. HINT: Are you within `code_and_data`&quot;
+  !gdown 1XPUF4n5iWhQw8v1ujAqDpFefJUVEoT4L &amp;&amp; (unzip -o calms21_task1.zip; rm -rf calms21_task1.zip )
+
+
+import os
+import matplotlib.pyplot as plt
+import numpy as np
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fatal: destination path &#39;/content/Neurosymbolic_Tutorial&#39; already exists and is not an empty directory.
+/content/Neurosymbolic_Tutorial/code_and_data
+Downloading...
+From: https://drive.google.com/uc?id=1XPUF4n5iWhQw8v1ujAqDpFefJUVEoT4L
+To: /content/Neurosymbolic_Tutorial/code_and_data/calms21_task1.zip
+100% 18.2M/18.2M [00:00&lt;00:00, 167MB/s]
+Archive:  calms21_task1.zip
+  inflating: data/calms21_task1/test_data.npy  
+  inflating: data/calms21_task1/test_investigation_labels.npy  
+  inflating: data/calms21_task1/test_mount_labels.npy  
+  inflating: data/calms21_task1/test_trajectory_data.npy  
+  inflating: data/calms21_task1/train_data.npy  
+  inflating: data/calms21_task1/train_investigation_labels.npy  
+  inflating: data/calms21_task1/train_mount_labels.npy  
+  inflating: data/calms21_task1/train_trajectory_data.npy  
+  inflating: data/calms21_task1/val_data.npy  
+  inflating: data/calms21_task1/val_investigation_labels.npy  
+  inflating: data/calms21_task1/val_mount_labels.npy  
+  inflating: data/calms21_task1/val_trajectory_data.npy  
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="important-convert-notebooks-to-python-files">
+<h1>(Important!) Convert Notebooks to Python Files<a class="headerlink" href="#important-convert-notebooks-to-python-files" title="Permalink to this headline">#</a></h1>
+<p>If you update the DSL in <code class="docutils literal notranslate"><span class="pre">dsl.ipynb</span></code> or the search algorithm in <code class="docutils literal notranslate"><span class="pre">near.ipynb</span></code>, you need to run this cell again to update the code in this notebook.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!jupyter nbconvert --to python dsl.ipynb
+!jupyter nbconvert --to python near.ipynb
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[NbConvertApp] Converting notebook dsl.ipynb to python
+[NbConvertApp] Writing 41558 bytes to dsl.py
+[NbConvertApp] Converting notebook near.ipynb to python
+[NbConvertApp] Writing 39669 bytes to near.py
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="neural-relaxation-exercise">
+<h1>Neural Relaxation Exercise<a class="headerlink" href="#neural-relaxation-exercise" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Admissible_heuristic">Admissible heuristics</a> are heuristics that never overestimate the cost of reaching a goal. These heuristics can be used as part of an informed search algorithm, such as <a class="reference external" href="https://en.wikipedia.org/wiki/A*_search_algorithm">A* search</a>. Here, we use the assumption that sufficiently large neural networks have greater representational power compared to neurosymbolic models or symbolic models, and use this neural relaxation as an admissible heuristic over the program graph search space.</p>
+<p><img alt="admissible.png" src="_images/admissible.png" /></p>
+<p>Run the utility code below to set up the training.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!pip install pytorch-lightning # Pytorch lightning is a wrapper around PyTorch.
+import os
+import torch, numpy as np
+import torch.nn as nn
+import torch.nn.functional as F
+import pytorch_lightning as pl
+from sklearn.metrics import f1_score, precision_score, recall_score
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Looking in indexes: https://pypi.org/simple, https://us-python.pkg.dev/colab-wheels/public/simple/
+Collecting pytorch-lightning
+  Downloading pytorch_lightning-1.6.5-py3-none-any.whl (585 kB)
+     |████████████████████████████████| 585 kB 14.7 MB/s 
+?25hRequirement already satisfied: numpy&gt;=1.17.2 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning) (1.21.6)
+Collecting PyYAML&gt;=5.4
+  Downloading PyYAML-6.0-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (596 kB)
+     |████████████████████████████████| 596 kB 58.8 MB/s 
+?25hRequirement already satisfied: protobuf&lt;=3.20.1 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning) (3.17.3)
+Requirement already satisfied: typing-extensions&gt;=4.0.0 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning) (4.1.1)
+Requirement already satisfied: tensorboard&gt;=2.2.0 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning) (2.8.0)
+Requirement already satisfied: tqdm&gt;=4.57.0 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning) (4.64.0)
+Collecting pyDeprecate&gt;=0.3.1
+  Downloading pyDeprecate-0.3.2-py3-none-any.whl (10 kB)
+Collecting fsspec[http]!=2021.06.0,&gt;=2021.05.0
+  Downloading fsspec-2022.5.0-py3-none-any.whl (140 kB)
+     |████████████████████████████████| 140 kB 56.9 MB/s 
+?25hCollecting torchmetrics&gt;=0.4.1
+  Downloading torchmetrics-0.9.2-py3-none-any.whl (419 kB)
+     |████████████████████████████████| 419 kB 52.3 MB/s 
+?25hRequirement already satisfied: torch&gt;=1.8.* in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning) (1.12.0+cu113)
+Requirement already satisfied: packaging&gt;=17.0 in /usr/local/lib/python3.7/dist-packages (from pytorch-lightning) (21.3)
+Requirement already satisfied: requests in /usr/local/lib/python3.7/dist-packages (from fsspec[http]!=2021.06.0,&gt;=2021.05.0-&gt;pytorch-lightning) (2.23.0)
+Collecting aiohttp
+  Downloading aiohttp-3.8.1-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.1 MB)
+     |████████████████████████████████| 1.1 MB 55.2 MB/s 
+?25hRequirement already satisfied: pyparsing!=3.0.5,&gt;=2.0.2 in /usr/local/lib/python3.7/dist-packages (from packaging&gt;=17.0-&gt;pytorch-lightning) (3.0.9)
+Requirement already satisfied: six&gt;=1.9 in /usr/local/lib/python3.7/dist-packages (from protobuf&lt;=3.20.1-&gt;pytorch-lightning) (1.15.0)
+Requirement already satisfied: tensorboard-plugin-wit&gt;=1.6.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (1.8.1)
+Requirement already satisfied: wheel&gt;=0.26 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (0.37.1)
+Requirement already satisfied: tensorboard-data-server&lt;0.7.0,&gt;=0.6.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (0.6.1)
+Requirement already satisfied: markdown&gt;=2.6.8 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (3.3.7)
+Requirement already satisfied: grpcio&gt;=1.24.3 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (1.47.0)
+Requirement already satisfied: google-auth&lt;3,&gt;=1.6.3 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (1.35.0)
+Requirement already satisfied: google-auth-oauthlib&lt;0.5,&gt;=0.4.1 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (0.4.6)
+Requirement already satisfied: absl-py&gt;=0.4 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (1.1.0)
+Requirement already satisfied: setuptools&gt;=41.0.0 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (57.4.0)
+Requirement already satisfied: werkzeug&gt;=0.11.15 in /usr/local/lib/python3.7/dist-packages (from tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (1.0.1)
+Requirement already satisfied: cachetools&lt;5.0,&gt;=2.0.0 in /usr/local/lib/python3.7/dist-packages (from google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (4.2.4)
+Requirement already satisfied: pyasn1-modules&gt;=0.2.1 in /usr/local/lib/python3.7/dist-packages (from google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (0.2.8)
+Requirement already satisfied: rsa&lt;5,&gt;=3.1.4 in /usr/local/lib/python3.7/dist-packages (from google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (4.8)
+Requirement already satisfied: requests-oauthlib&gt;=0.7.0 in /usr/local/lib/python3.7/dist-packages (from google-auth-oauthlib&lt;0.5,&gt;=0.4.1-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (1.3.1)
+Requirement already satisfied: importlib-metadata&gt;=4.4 in /usr/local/lib/python3.7/dist-packages (from markdown&gt;=2.6.8-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (4.12.0)
+Requirement already satisfied: zipp&gt;=0.5 in /usr/local/lib/python3.7/dist-packages (from importlib-metadata&gt;=4.4-&gt;markdown&gt;=2.6.8-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (3.8.0)
+Requirement already satisfied: pyasn1&lt;0.5.0,&gt;=0.4.6 in /usr/local/lib/python3.7/dist-packages (from pyasn1-modules&gt;=0.2.1-&gt;google-auth&lt;3,&gt;=1.6.3-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (0.4.8)
+Requirement already satisfied: urllib3!=1.25.0,!=1.25.1,&lt;1.26,&gt;=1.21.1 in /usr/local/lib/python3.7/dist-packages (from requests-&gt;fsspec[http]!=2021.06.0,&gt;=2021.05.0-&gt;pytorch-lightning) (1.24.3)
+Requirement already satisfied: certifi&gt;=2017.4.17 in /usr/local/lib/python3.7/dist-packages (from requests-&gt;fsspec[http]!=2021.06.0,&gt;=2021.05.0-&gt;pytorch-lightning) (2022.6.15)
+Requirement already satisfied: idna&lt;3,&gt;=2.5 in /usr/local/lib/python3.7/dist-packages (from requests-&gt;fsspec[http]!=2021.06.0,&gt;=2021.05.0-&gt;pytorch-lightning) (2.10)
+Requirement already satisfied: chardet&lt;4,&gt;=3.0.2 in /usr/local/lib/python3.7/dist-packages (from requests-&gt;fsspec[http]!=2021.06.0,&gt;=2021.05.0-&gt;pytorch-lightning) (3.0.4)
+Requirement already satisfied: oauthlib&gt;=3.0.0 in /usr/local/lib/python3.7/dist-packages (from requests-oauthlib&gt;=0.7.0-&gt;google-auth-oauthlib&lt;0.5,&gt;=0.4.1-&gt;tensorboard&gt;=2.2.0-&gt;pytorch-lightning) (3.2.0)
+Collecting frozenlist&gt;=1.1.1
+  Downloading frozenlist-1.3.0-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (144 kB)
+     |████████████████████████████████| 144 kB 48.0 MB/s 
+?25hCollecting multidict&lt;7.0,&gt;=4.5
+  Downloading multidict-6.0.2-cp37-cp37m-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (94 kB)
+     |████████████████████████████████| 94 kB 4.3 MB/s 
+?25hCollecting yarl&lt;2.0,&gt;=1.0
+  Downloading yarl-1.7.2-cp37-cp37m-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_12_x86_64.manylinux2010_x86_64.whl (271 kB)
+     |████████████████████████████████| 271 kB 76.7 MB/s 
+?25hCollecting asynctest==0.13.0
+  Downloading asynctest-0.13.0-py3-none-any.whl (26 kB)
+Collecting aiosignal&gt;=1.1.2
+  Downloading aiosignal-1.2.0-py3-none-any.whl (8.2 kB)
+Requirement already satisfied: attrs&gt;=17.3.0 in /usr/local/lib/python3.7/dist-packages (from aiohttp-&gt;fsspec[http]!=2021.06.0,&gt;=2021.05.0-&gt;pytorch-lightning) (21.4.0)
+Requirement already satisfied: charset-normalizer&lt;3.0,&gt;=2.0 in /usr/local/lib/python3.7/dist-packages (from aiohttp-&gt;fsspec[http]!=2021.06.0,&gt;=2021.05.0-&gt;pytorch-lightning) (2.1.0)
+Collecting async-timeout&lt;5.0,&gt;=4.0.0a3
+  Downloading async_timeout-4.0.2-py3-none-any.whl (5.8 kB)
+Installing collected packages: multidict, frozenlist, yarl, asynctest, async-timeout, aiosignal, fsspec, aiohttp, torchmetrics, PyYAML, pyDeprecate, pytorch-lightning
+  Attempting uninstall: PyYAML
+    Found existing installation: PyYAML 3.13
+    Uninstalling PyYAML-3.13:
+      Successfully uninstalled PyYAML-3.13
+Successfully installed PyYAML-6.0 aiohttp-3.8.1 aiosignal-1.2.0 async-timeout-4.0.2 asynctest-0.13.0 frozenlist-1.3.0 fsspec-2022.5.0 multidict-6.0.2 pyDeprecate-0.3.2 pytorch-lightning-1.6.5 torchmetrics-0.9.2 yarl-1.7.2
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Utility Functions from Notebook 1</span>
+
+<span class="k">class</span> <span class="nc">TrainConfig</span><span class="p">:</span>
+    <span class="n">epochs</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span>
+    <span class="n">batch_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">32</span>
+    <span class="n">lr</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3e-3</span>
+    <span class="n">weight_decay</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="n">train_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2000</span> <span class="c1"># out of 5000</span>
+    <span class="n">val_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span> <span class="c1"># out of 5000</span>
+    <span class="n">test_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3000</span> <span class="c1"># out of 3000</span>
+    <span class="n">num_classes</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">TrainConfig</span><span class="p">()</span>
+
+<span class="c1"># Dataloader for the CalMS21 dataset</span>
+<span class="k">class</span> <span class="nc">Calms21Task1Dataset</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_path</span><span class="p">,</span> <span class="n">investigations_path</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">target_transform</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">investigations</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">investigations_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span> <span class="o">=</span> <span class="n">target_transform</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">investigations</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
+
+
+<span class="k">class</span> <span class="nc">Calms21Task1DataModule</span><span class="p">(</span><span class="n">pl</span><span class="o">.</span><span class="n">LightningDataModule</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_dir</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">target_transform</span><span class="o">=</span><span class="kc">None</span> <span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data_dir</span> <span class="o">=</span> <span class="n">data_dir</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="n">batch_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;train_data.npy&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_investigations_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;train_investigation_labels.npy&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;test_data.npy&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_investigations_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;test_investigation_labels.npy&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val_data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;val_data.npy&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val_investigations_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data_dir</span><span class="p">,</span> <span class="s2">&quot;val_investigation_labels.npy&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transform</span> <span class="o">=</span> <span class="n">transform</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span> <span class="o">=</span> <span class="n">target_transform</span>
+
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_dataset</span> <span class="o">=</span> <span class="n">Calms21Task1Dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_data_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">train_investigations_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val_dataset</span> <span class="o">=</span> <span class="n">Calms21Task1Dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">val_data_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">val_investigations_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">test_dataset</span> <span class="o">=</span> <span class="n">Calms21Task1Dataset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_data_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">test_investigations_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transform</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_transform</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">train_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">val_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">val_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">test_dataloader</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">dm</span> <span class="o">=</span> <span class="n">Calms21Task1DataModule</span><span class="p">(</span><span class="n">data_dir</span><span class="o">=</span><span class="s2">&quot;data/calms21_task1/&quot;</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">target_transform</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">dm</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">train</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">datamodule</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+    <span class="n">trainer</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">Trainer</span><span class="p">(</span><span class="n">gpus</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">max_epochs</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">epochs</span><span class="p">)</span>
+    <span class="n">trainer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">datamodule</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="c1"># Evaluate using F1 score.</span>
+<span class="n">test_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data/calms21_task1/test_investigation_labels.npy&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">evaluate</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">data_loader</span><span class="p">,</span> <span class="n">gt_labels</span><span class="p">):</span>
+  <span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">_</span> <span class="ow">in</span> <span class="n">data_loader</span><span class="p">:</span>
+    <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">dim</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+
+  <span class="n">predictions</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+  <span class="n">f1</span> <span class="o">=</span> <span class="n">f1_score</span><span class="p">(</span><span class="n">test_labels</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">)</span>
+  <span class="n">precision</span> <span class="o">=</span> <span class="n">precision_score</span><span class="p">(</span><span class="n">test_labels</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">)</span>
+  <span class="n">recall</span> <span class="o">=</span> <span class="n">recall_score</span><span class="p">(</span><span class="n">test_labels</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">)</span>
+
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;F1 score on test set: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">f1</span><span class="p">))</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Precision on test set: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">precision</span><span class="p">))</span>
+  <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Recall on test set: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">recall</span><span class="p">))</span>
+
+  <span class="k">return</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Exercise</strong>: The cost of a program is represented by structural cost + the model performance (error in F1 score). Compare performance between:</p>
+<ul class="simple">
+<li><p>Program 1: <code class="docutils literal notranslate"><span class="pre">Window13Avg(</span> <span class="pre">Or(MinResNoseKeypointDistSelect,AccelerationSelect)</span> <span class="pre">)</span></code></p></li>
+<li><p>Program 2: <code class="docutils literal notranslate"><span class="pre">Window13Avg(</span> <span class="pre">Or(AtomToAtomModule,AtomToAtomModule)</span> <span class="pre">)</span></code></p></li>
+</ul>
+<p>Which program have lower cost in terms of error in F1 score? <code class="docutils literal notranslate"><span class="pre">AtomToAtomModule</span></code> from program 2 are neural networks, while <code class="docutils literal notranslate"><span class="pre">MinResNoseKeypointDistSelect</span></code> and <code class="docutils literal notranslate"><span class="pre">AccelerationSelect</span></code> from program 1 are feature selects with only a small set of weights and bias that are learned. Are you able to find features in <code class="docutils literal notranslate"><span class="pre">DSL_DICT</span></code> in <code class="docutils literal notranslate"><span class="pre">dsl.ipynb</span></code> that enables program 1 to perform better than program 2?</p>
+<section id="example-of-a-symbolic-program">
+<h2>Example of a symbolic program<a class="headerlink" href="#example-of-a-symbolic-program" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Complete program</span>
+<span class="kn">from</span> <span class="nn">dsl_compiler</span> <span class="kn">import</span> <span class="n">ExpertProgram</span>
+
+<span class="n">program</span> <span class="o">=</span> <span class="s2">&quot;Window13Avg( Or(MinResNoseKeypointDistSelect,AccelerationSelect) )&quot;</span>
+<span class="n">config</span><span class="o">.</span><span class="n">lr</span> <span class="o">=</span> <span class="mf">1e-2</span>
+<span class="n">sample_model</span> <span class="o">=</span> <span class="n">ExpertProgram</span><span class="p">(</span><span class="n">program</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+
+<span class="c1"># Use gradient descent to find parameters of multi-variable linear regression.</span>
+<span class="n">sample_model</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">sample_model</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+
+<span class="n">predictions_symbolic</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">sample_model</span><span class="p">,</span> <span class="n">dm</span><span class="o">.</span><span class="n">test_dataloader</span><span class="p">(),</span> <span class="n">test_labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GPU available: True, used: False
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/usr/local/lib/python3.7/dist-packages/pytorch_lightning/trainer/trainer.py:1817: PossibleUserWarning: GPU available but not used. Set `accelerator` and `devices` using `Trainer(accelerator=&#39;gpu&#39;, devices=1)`.
+  category=PossibleUserWarning,
+Missing logger folder: /content/drive/MyDrive/Neurosymbolic_Summer_School_Tutorials/code_and_data/lightning_logs
+
+  | Name | Type | Params
+------------------------------
+------------------------------
+0         Trainable params
+0         Non-trainable params
+0         Total params
+0.000     Total estimated model params size (MB)
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "012689614f454800ad975b91fe55ff61", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "408d8d22bbea465aa6abfadabf03b1bf", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "496ab29424b74c58b3320295b172f409", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "aad2501c22a647cda422fda2aa64dd17", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "32b506045fb6404b87d1d7165741a9a0", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "147e925e47d74edfbbbcc6881915683d", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "f6071f9d021e442580eaf15834fc3af3", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "0daeac7f7ec249ab996062af90d3a894", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "31c060c13b9d4985bcefde12df4194b4", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "a5a11631d2304732a5e639d1d5753dd5", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "d541e28df01f48c0beefdff860252847", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "46c3aeaaeb7146dcbd8dec2a677e4d79", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "eab9d5e54c314bcfa0dca68d7c32da54", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "79028f4367dd4572a6ca087138e40d74", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "a8637675c55649d7aa7284d9c392f0ef", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "3ad7f6d1eaa440f38b1c3fa85e912f52", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "d2e9051355344a53b7d3197b48f743eb", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "acdc7991c87546f7b752f9f1065ffad1", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "b7a056c663ec4e12949945050312a11e", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "62c1b5eab6dc42aeadd0d850c8b409fc", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "afb461d973b1445abebbad2231e1582c", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "0a896f9a27b74133b5b90c94fe6a551b", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>F1 score on test set: 0.5983960518198643
+Precision on test set: 0.5382907880133185
+Recall on test set: 0.6736111111111112
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-of-a-neurosymbolic-program">
+<h2>Example of a Neurosymbolic Program<a class="headerlink" href="#example-of-a-neurosymbolic-program" title="Permalink to this headline">#</a></h2>
+<p>How does the performance compare to the symbolic program above?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Neurosymbolic</span>
+<span class="n">program</span> <span class="o">=</span> <span class="s2">&quot;Window13Avg( Or(AtomToAtomModule,AtomToAtomModule) )&quot;</span>
+<span class="n">config</span><span class="o">.</span><span class="n">lr</span> <span class="o">=</span> <span class="mf">1e-2</span>
+<span class="n">sample_model</span> <span class="o">=</span> <span class="n">ExpertProgram</span><span class="p">(</span><span class="n">program</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+
+<span class="c1"># Use gradient descent to find parameters of multi-variable linear regression.</span>
+<span class="n">sample_model</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">sample_model</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+
+<span class="n">predictions_symbolic</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">sample_model</span><span class="p">,</span> <span class="n">dm</span><span class="o">.</span><span class="n">test_dataloader</span><span class="p">(),</span> <span class="n">test_labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GPU available: True, used: False
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/usr/local/lib/python3.7/dist-packages/pytorch_lightning/trainer/trainer.py:1817: PossibleUserWarning: GPU available but not used. Set `accelerator` and `devices` using `Trainer(accelerator=&#39;gpu&#39;, devices=1)`.
+  category=PossibleUserWarning,
+
+  | Name | Type | Params
+------------------------------
+------------------------------
+0         Trainable params
+0         Non-trainable params
+0         Total params
+0.000     Total estimated model params size (MB)
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "4b2882cbb5ee48cdac0716cd9fa0c2dd", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "dfa7047ae704446d8ea0c9893a35c3fd", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "2b36a8aacff24908a602cdb78c05afa6", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "37527cdf02ab4b32b3c3c7de47fb5284", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "a3bdc2f9d19f48c78fc70ab8b430d867", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "5acb5ea39cd0480ca3942275574ccf8d", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "4dc6c667e2344c13aa08183d74355241", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "2608561d1097452987a184a5ffa20fb7", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "7f0ff81cf1f24a628d7b68a38db7388d", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "23a27cbd2746476d866e7ce048f4a5a0", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "f14f81c2aa864164be8960a800269927", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "cb3ec01b197f4e609e3028db22991bbe", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "1a9144003a29467caeb806d55f559411", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "31e27662a8be4ae194ff709f3a511ad7", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "2063d8dc0f9b42bfb8dc750bbc3aac7a", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "2a76f8fc61e54abc91860bc5310e84eb", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "26dfa9378ec948f4a49a11dd2cb99afa", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "9715f1851066494ab5ff33dbe5d9c01a", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "e8a5c3c09e7d4b86a2844d8efec73985", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "400f3053b6b646d3baecd180addeeca4", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "2ddadc6f2f3f456da1c51952b43074a5", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "75287b2e946c4b42a62c2db867560bf0", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>F1 score on test set: 0.7103977669225401
+Precision on test set: 0.7138849929873773
+Recall on test set: 0.7069444444444445
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="example-of-a-neural-module">
+<h2>Example of a Neural Module<a class="headerlink" href="#example-of-a-neural-module" title="Permalink to this headline">#</a></h2>
+<p>How does the performance compare to the neurosymbolic program?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is an RNN = basically fully neural. How does the error compare?</span>
+<span class="n">program</span> <span class="o">=</span> <span class="s2">&quot;ListToAtomModule&quot;</span>
+<span class="n">config</span><span class="o">.</span><span class="n">lr</span> <span class="o">=</span> <span class="mf">1e-2</span>
+<span class="n">sample_model</span> <span class="o">=</span> <span class="n">ExpertProgram</span><span class="p">(</span><span class="n">program</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+
+<span class="c1"># Use gradient descent to find parameters of multi-variable linear regression.</span>
+<span class="n">sample_model</span> <span class="o">=</span> <span class="n">train</span><span class="p">(</span><span class="n">sample_model</span><span class="p">,</span> <span class="n">dm</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+
+<span class="n">predictions_symbolic</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">evaluate</span><span class="p">(</span><span class="n">sample_model</span><span class="p">,</span> <span class="n">dm</span><span class="o">.</span><span class="n">test_dataloader</span><span class="p">(),</span> <span class="n">test_labels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>GPU available: True, used: False
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/usr/local/lib/python3.7/dist-packages/pytorch_lightning/trainer/trainer.py:1817: PossibleUserWarning: GPU available but not used. Set `accelerator` and `devices` using `Trainer(accelerator=&#39;gpu&#39;, devices=1)`.
+  category=PossibleUserWarning,
+
+  | Name | Type | Params
+------------------------------
+------------------------------
+0         Trainable params
+0         Non-trainable params
+0         Total params
+0.000     Total estimated model params size (MB)
+</pre></div>
+</div>
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "5390f7e48a974836b8ac4d6ddb793e3e", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "d1f36a9ee6c148b0b1aef530cb2df7c4", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "18a6c3ad467445dca702a422484e688c", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "2241db9e7b6b4c90bdcaac03d3ac167e", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "b5ca8ff428d14bdca2063cc5198c62a8", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "d1ba87af291047ef95075ceef0bd2a73", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "fe43edd56e9f4177b0324dc53ffdbe87", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "774ff2c69c414e95ba1132112743a857", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "1b6b9ce9ced84174b99d5fa38294de72", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "81534a48ec4c43c9920a7848552ad24d", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "a7cc0bade9ab4fd4917a5ab82d685cd3", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "1adda0ea1f47408c82e64b06dcf1b0b6", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "77722ed7b342435eb2f850ee011b5c1c", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "7f1bb4e2b77f46c89a2dfc39015cd3cd", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "b592fdebec004cd4973b8c6830463ccb", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "60c96ec1dd2443be91ed12f958e119c7", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "2060f413c5fd4cdbb201b506b8db3328", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "fad717847f114eeb8bb25f717628032e", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "a1d8c7bcbc9248468b967302f35bb0b3", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "4caea20834b34f6bb698af08f867d773", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "53fdc5cefd7a4449925d16858af25a9d", "version_major": 2, "version_minor": 0}
+</script><script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "622a728f467749a99a85d7de9bf118c8", "version_major": 2, "version_minor": 0}
+</script><div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>F1 score on test set: 0.7579843860894251
+Precision on test set: 0.7750362844702468
+Recall on test set: 0.7416666666666667
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="near-astar-search">
+<h1>NEAR: Astar Search<a class="headerlink" href="#near-astar-search" title="Permalink to this headline">#</a></h1>
+<p>We can use NEAR as a heuristic to guide A* search. We maintain a frontier of nodes (starting with an empty program), and at each iteration we choose a node on the frontier to explore by using the NEAR heuristic with a structural cost to estimate its path cost. The search terminates when the frontier is empty, after which we return the best complete program found during our search.</p>
+<section id="near-with-base-dsl">
+<h2>NEAR with Base DSL<a class="headerlink" href="#near-with-base-dsl" title="Permalink to this headline">#</a></h2>
+<p>How does the programs found by NEAR differ from enumeration through the search process? How does the frontier size change during the search process?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!yes| python train.py \
+--algorithm astar-near \
+--exp_name investigation_base \
+--trial 1 \
+--seed 1 \
+--dsl_str &quot;default&quot; \
+--train_data &quot;data/calms21_task1/train_data.npy&quot; \
+--test_data &quot;data/calms21_task1/test_data.npy&quot; \
+--valid_data &quot;data/calms21_task1/val_data.npy&quot; \
+--train_labels &quot;data/calms21_task1/train_investigation_labels.npy&quot; \
+--test_labels &quot;data/calms21_task1/test_investigation_labels.npy&quot; \
+--valid_labels &quot;data/calms21_task1/val_investigation_labels.npy&quot; \
+--input_type &quot;list&quot; \
+--output_type &quot;atom&quot; \
+--input_size 18 \
+--output_size 1 \
+--num_labels 1 \
+--lossfxn &quot;bcelogits&quot; \
+--frontier_capacity 8 \
+--max_num_children 10 \
+--max_depth 5 \
+--max_num_units 32 \
+--min_num_units 16 \
+--learning_rate 0.0001 \
+--neural_epochs 4 \
+--symbolic_epochs 12 \
+--class_weights &quot;2.0&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Seed is 1
+Experiment log and results saved at: results/investigation_base_astar-near_sd_1_001
+
+Training root program ...
+/content/drive/MyDrive/neurosymbolic_summer_school_notebooks/code_and_data_4/near.py:222: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:210.)
+  batch_input = [torch.tensor(traj) for traj in batch]
+Initial training complete. F1-Score from program is 0.5791 
+
+CURRENT program has depth 0, fscore inf: Start(ListToAtomModule)
+Training child program: Start(Or(ListToAtomModule, ListToAtomModule))
+DEBUG: f-score 0.3788709677419355
+Training child program: Start(And(ListToAtomModule, ListToAtomModule))
+DEBUG: f-score 0.562713567839196
+Training child program: Start(Window5Avg(AtomToAtomModule))
+DEBUG: f-score 0.9176923076923077
+Frontier length is: 3
+Total time elapsed is 9.576
+
+CURRENT program has depth 1, fscore 0.3789: Start(Or(ListToAtomModule, ListToAtomModule))
+Training child program: Start(Or(Window5Avg(AtomToAtomModule), ListToAtomModule))
+DEBUG: f-score 0.48861297539149895
+Frontier length is: 3
+Total time elapsed is 13.502
+
+CURRENT program has depth 2, fscore 0.4886: Start(Or(Window5Avg(AtomToAtomModule), ListToAtomModule))
+Training child program: Start(Or(Window5Avg(AtomToAtomModule), Window5Avg(AtomToAtomModule)))
+DEBUG: f-score 0.4488495575221238
+Frontier length is: 3
+Total time elapsed is 17.936
+
+CURRENT program has depth 3, fscore 0.4488: Start(Or(Window5Avg(AtomToAtomModule), Window5Avg(AtomToAtomModule)))
+Training child program: Start(Or(Window5Avg(AtomToAtomModule), Window5Avg(ResAngleHeadBodySelect())))
+DEBUG: f-score 0.5697273133661154
+Training child program: Start(Or(Window5Avg(AtomToAtomModule), Window5Avg(SpeedSelect())))
+DEBUG: f-score 0.5679435702658711
+Training child program: Start(Or(Window5Avg(AtomToAtomModule), Window5Avg(TangentialVelocitySelect())))
+DEBUG: f-score 0.643960396039604
+Training child program: Start(Or(Window5Avg(AtomToAtomModule), Window5Avg(AccelerationSelect())))
+DEBUG: f-score 0.6175444264943457
+Training child program: Start(Or(Window5Avg(AtomToAtomModule), Window5Avg(RelativeSocialAngleSelect())))
+DEBUG: f-score 0.6677116864940518
+Training child program: Start(Or(Window5Avg(AtomToAtomModule), Window5Avg(AxisRatioSelect())))
+DEBUG: f-score 0.9162035763411279
+Training child program: Start(Or(Window5Avg(AtomToAtomModule), Window5Avg(OverlapBboxesSelect())))
+DEBUG: f-score 0.4535188866799205
+POP Start(Window5Avg(AtomToAtomModule)) with fscore 0.9177
+Training child program: Start(Or(Window5Avg(AtomToAtomModule), Window5Avg(MinResNoseKeypointDistanceSelect())))
+DEBUG: f-score 1.04
+POP Start(Or(Window5Avg(AtomToAtomModule), Window5Avg(MinResNoseKeypointDistanceSelect()))) with fscore 1.0400
+Frontier length is: 8
+Total time elapsed is 48.870
+
+CURRENT program has depth 4, fscore 0.4535: Start(Or(Window5Avg(AtomToAtomModule), Window5Avg(OverlapBboxesSelect())))
+Training child program: Start(Or(Window5Avg(ResAngleHeadBodySelect()), Window5Avg(OverlapBboxesSelect())))
+DEBUG: f-score 0.4425974025974026
+New BEST program found:
+Start(Or(Window5Avg(ResAngleHeadBodySelect()), Window5Avg(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.4026 | path_cost 0.4426 | time 58.8371
+Training child program: Start(Or(Window5Avg(SpeedSelect()), Window5Avg(OverlapBboxesSelect())))
+DEBUG: f-score 0.434927536231884
+New BEST program found:
+Start(Or(Window5Avg(SpeedSelect()), Window5Avg(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.3949 | path_cost 0.4349 | time 68.6588
+Training child program: Start(Or(Window5Avg(TangentialVelocitySelect()), Window5Avg(OverlapBboxesSelect())))
+DEBUG: f-score 0.7235599505562423
+Training child program: Start(Or(Window5Avg(AccelerationSelect()), Window5Avg(OverlapBboxesSelect())))
+DEBUG: f-score 0.4514490161001789
+Training child program: Start(Or(Window5Avg(RelativeSocialAngleSelect()), Window5Avg(OverlapBboxesSelect())))
+DEBUG: f-score 0.5455432372505544
+Training child program: Start(Or(Window5Avg(AxisRatioSelect()), Window5Avg(OverlapBboxesSelect())))
+DEBUG: f-score 0.38587080948487323
+New BEST program found:
+Start(Or(Window5Avg(AxisRatioSelect()), Window5Avg(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.3459 | path_cost 0.3859 | time 109.9964
+Training child program: Start(Or(Window5Avg(OverlapBboxesSelect()), Window5Avg(OverlapBboxesSelect())))
+DEBUG: f-score 0.3506444605358436
+New BEST program found:
+Start(Or(Window5Avg(OverlapBboxesSelect()), Window5Avg(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.3106 | path_cost 0.3506 | time 119.8187
+Training child program: Start(Or(Window5Avg(MinResNoseKeypointDistanceSelect()), Window5Avg(OverlapBboxesSelect())))
+DEBUG: f-score 0.36586206896551726
+Frontier length is: 0
+Total time elapsed is 129.612
+
+
+
+BEST programs found:
+Start(Or(Window5Avg(ResAngleHeadBodySelect()), Window5Avg(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.4026 | path_cost 0.4426 | time 58.8371
+Start(Or(Window5Avg(SpeedSelect()), Window5Avg(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.3949 | path_cost 0.4349 | time 68.6588
+Start(Or(Window5Avg(AxisRatioSelect()), Window5Avg(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.3459 | path_cost 0.3859 | time 109.9964
+Start(Or(Window5Avg(OverlapBboxesSelect()), Window5Avg(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.3106 | path_cost 0.3506 | time 119.8187
+
+
+Evaluating program Start(Or(Window5Avg(OverlapBboxesSelect()), Window5Avg(OverlapBboxesSelect()))) on TEST SET
+F1 score achieved is 0.5724
+Additional performance parameters: {&#39;hamming_accuracy&#39;: 0.6996666666666667, &#39;all_f1s&#39;: array([0.76855895, 0.57237779])}
+
+ALGORITHM END 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="near-with-morlet-dsl">
+<h2>NEAR with Morlet DSL<a class="headerlink" href="#near-with-morlet-dsl" title="Permalink to this headline">#</a></h2>
+<p>How does the programs found by NEAR using the Morlet filter differ from enumeration through the search process? How does the program performance differ from the default DSL?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!yes| python train.py \
+--algorithm astar-near \
+--exp_name investigation_morlet \
+--trial 1 \
+--seed 1 \
+--dsl_str &quot;morlet&quot; \
+--train_data &quot;data/calms21_task1/train_data.npy&quot; \
+--test_data &quot;data/calms21_task1/test_data.npy&quot; \
+--valid_data &quot;data/calms21_task1/val_data.npy&quot; \
+--train_labels &quot;data/calms21_task1/train_investigation_labels.npy&quot; \
+--test_labels &quot;data/calms21_task1/test_investigation_labels.npy&quot; \
+--valid_labels &quot;data/calms21_task1/val_investigation_labels.npy&quot; \
+--input_type &quot;list&quot; \
+--output_type &quot;atom&quot; \
+--input_size 18 \
+--output_size 1 \
+--num_labels 1 \
+--lossfxn &quot;bcelogits&quot; \
+--frontier_capacity 8 \
+--max_num_children 10 \
+--max_depth 5 \
+--max_num_units 32 \
+--min_num_units 16 \
+--learning_rate 0.0001 \
+--neural_epochs 4 \
+--symbolic_epochs 12 \
+--class_weights &quot;2.0&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Seed is 1
+Experiment log and results saved at: results/investigation_morlet_astar-near_sd_1_001
+
+Training root program ...
+/content/drive/MyDrive/neurosymbolic_summer_school_notebooks/code_and_data_4/near.py:222: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:210.)
+  batch_input = [torch.tensor(traj) for traj in batch]
+Initial training complete. F1-Score from program is 0.5791 
+
+CURRENT program has depth 0, fscore inf: Start(ListToAtomModule)
+Training child program: Start(Or(ListToAtomModule, ListToAtomModule))
+DEBUG: f-score 0.3788709677419355
+Training child program: Start(And(ListToAtomModule, ListToAtomModule))
+DEBUG: f-score 0.562713567839196
+Training child program: Start(MorletFilterOp(AtomToAtomModule))
+DEBUG: f-score 0.5946560846560847
+Frontier length is: 3
+Total time elapsed is 9.552
+
+CURRENT program has depth 1, fscore 0.3789: Start(Or(ListToAtomModule, ListToAtomModule))
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), ListToAtomModule))
+DEBUG: f-score 0.4783430799220274
+Frontier length is: 3
+Total time elapsed is 12.460
+
+CURRENT program has depth 2, fscore 0.4783: Start(Or(MorletFilterOp(AtomToAtomModule), ListToAtomModule))
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(AtomToAtomModule)))
+DEBUG: f-score 0.3923357086302454
+Frontier length is: 3
+Total time elapsed is 14.865
+
+CURRENT program has depth 3, fscore 0.3923: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(AtomToAtomModule)))
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(ResAngleHeadBodySelect())))
+DEBUG: f-score 0.505909090909091
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(SpeedSelect())))
+DEBUG: f-score 0.6207609475951186
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(TangentialVelocitySelect())))
+DEBUG: f-score 0.5302244750181028
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(AccelerationSelect())))
+DEBUG: f-score 0.6098729582577133
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(RelativeSocialAngleSelect())))
+DEBUG: f-score 0.6418306636155606
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(AxisRatioSelect())))
+DEBUG: f-score 0.8447058823529412
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(OverlapBboxesSelect())))
+DEBUG: f-score 0.37452914798206277
+POP Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(AxisRatioSelect()))) with fscore 0.8447
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(MinResNoseKeypointDistanceSelect())))
+DEBUG: f-score 0.7757910906298003
+POP Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(MinResNoseKeypointDistanceSelect()))) with fscore 0.7758
+Frontier length is: 8
+Total time elapsed is 33.586
+
+CURRENT program has depth 4, fscore 0.3745: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(OverlapBboxesSelect())))
+Training child program: Start(Or(MorletFilterOp(ResAngleHeadBodySelect()), MorletFilterOp(OverlapBboxesSelect())))
+DEBUG: f-score 0.4362558502340092
+New BEST program found:
+Start(Or(MorletFilterOp(ResAngleHeadBodySelect()), MorletFilterOp(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.3963 | path_cost 0.4363 | time 40.4515
+Training child program: Start(Or(MorletFilterOp(SpeedSelect()), MorletFilterOp(OverlapBboxesSelect())))
+DEBUG: f-score 0.42735818476499193
+New BEST program found:
+Start(Or(MorletFilterOp(SpeedSelect()), MorletFilterOp(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.3874 | path_cost 0.4274 | time 47.4724
+Training child program: Start(Or(MorletFilterOp(TangentialVelocitySelect()), MorletFilterOp(OverlapBboxesSelect())))
+DEBUG: f-score 0.567647610121837
+Training child program: Start(Or(MorletFilterOp(AccelerationSelect()), MorletFilterOp(OverlapBboxesSelect())))
+DEBUG: f-score 0.4065594855305467
+New BEST program found:
+Start(Or(MorletFilterOp(AccelerationSelect()), MorletFilterOp(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.3666 | path_cost 0.4066 | time 61.1156
+Training child program: Start(Or(MorletFilterOp(RelativeSocialAngleSelect()), MorletFilterOp(OverlapBboxesSelect())))
+DEBUG: f-score 0.4129729729729729
+Training child program: Start(Or(MorletFilterOp(AxisRatioSelect()), MorletFilterOp(OverlapBboxesSelect())))
+DEBUG: f-score 0.4126937269372693
+Training child program: Start(Or(MorletFilterOp(OverlapBboxesSelect()), MorletFilterOp(OverlapBboxesSelect())))
+DEBUG: f-score 0.32441754916792737
+New BEST program found:
+Start(Or(MorletFilterOp(OverlapBboxesSelect()), MorletFilterOp(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.2844 | path_cost 0.3244 | time 81.5156
+Training child program: Start(Or(MorletFilterOp(MinResNoseKeypointDistanceSelect()), MorletFilterOp(OverlapBboxesSelect())))
+DEBUG: f-score 0.29561187545257056
+New BEST program found:
+Start(Or(MorletFilterOp(MinResNoseKeypointDistanceSelect()), MorletFilterOp(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.2556 | path_cost 0.2956 | time 88.2828
+Frontier length is: 0
+Total time elapsed is 88.287
+
+
+
+BEST programs found:
+Start(Or(MorletFilterOp(ResAngleHeadBodySelect()), MorletFilterOp(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.3963 | path_cost 0.4363 | time 40.4515
+Start(Or(MorletFilterOp(SpeedSelect()), MorletFilterOp(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.3874 | path_cost 0.4274 | time 47.4724
+Start(Or(MorletFilterOp(AccelerationSelect()), MorletFilterOp(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.3666 | path_cost 0.4066 | time 61.1156
+Start(Or(MorletFilterOp(OverlapBboxesSelect()), MorletFilterOp(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.2844 | path_cost 0.3244 | time 81.5156
+Start(Or(MorletFilterOp(MinResNoseKeypointDistanceSelect()), MorletFilterOp(OverlapBboxesSelect())))
+struct_cost 0.0400 | score 0.2556 | path_cost 0.2956 | time 88.2828
+
+
+Evaluating program Start(Or(MorletFilterOp(MinResNoseKeypointDistanceSelect()), MorletFilterOp(OverlapBboxesSelect()))) on TEST SET
+F1 score achieved is 0.6564
+Additional performance parameters: {&#39;hamming_accuracy&#39;: 0.7556666666666667, &#39;all_f1s&#39;: array([0.81044738, 0.65635256])}
+
+ALGORITHM END 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="visualizing-runtime-vs-accuracy">
+<h1>Visualizing Runtime vs. Accuracy<a class="headerlink" href="#visualizing-runtime-vs-accuracy" title="Permalink to this headline">#</a></h1>
+<p>To evaluate your NEAR runs, we can take the saved log files in <code class="docutils literal notranslate"><span class="pre">code_and_data/results</span></code> and plot the total runtime against accuracy.</p>
+<p><strong>Optional Exercise</strong>: Some hyperparameters that affect runtime and accuracy are listed below. Try changing a few of these and save a performance plot of your results.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">neural_epochs</span></code>: number of epochs to train the neural network approximator</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">min_num_units</span></code> and <code class="docutils literal notranslate"><span class="pre">max_num_units</span></code>: minimum and maximum number of units in the neural network. The network is smaller as the search gets deeper.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">max_num_children</span></code>: max number of children for a node</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frontier_capacity</span></code>: capacity of frontier maintained by the search algorithm</p></li>
+</ul>
+<p>How does the runtime and performance of NEAR compare to enumeration?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plotting utility functions</span>
+
+<span class="k">def</span> <span class="nf">parse_runtime_f1_from_logs</span><span class="p">(</span><span class="n">log_files</span><span class="p">):</span>
+
+  <span class="n">runtime</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="n">f1</span> <span class="o">=</span> <span class="p">[]</span>
+
+  <span class="n">runtime_key</span> <span class="o">=</span> <span class="s1">&#39;Total time elapsed is&#39;</span>
+  <span class="n">f1_key</span> <span class="o">=</span> <span class="s1">&#39;F1 score achieved is&#39;</span>
+
+  <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">log_files</span><span class="p">:</span>
+    <span class="c1"># If there&#39;s a list of list of files corresponding to different random seeds,</span>
+    <span class="c1"># we take the average</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+      <span class="n">seed_runtime</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="n">seed_f1</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="k">for</span> <span class="n">seed</span> <span class="ow">in</span> <span class="n">item</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">,</span> <span class="n">seed</span><span class="p">,</span> <span class="s1">&#39;log.txt&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+            <span class="n">curr_runtimes</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+              <span class="k">if</span> <span class="n">runtime_key</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">runtime_key</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">):</span>
+                  <span class="n">curr_runtimes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">runtime_key</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">1</span><span class="p">:]))</span>
+                <span class="k">else</span><span class="p">:</span>
+                  <span class="n">curr_runtimes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">runtime_key</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+            
+              <span class="k">if</span> <span class="n">f1_key</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+                <span class="n">seed_f1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">f1_key</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+            <span class="n">seed_runtime</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr_runtimes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+      <span class="n">runtime</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">seed_runtime</span><span class="p">))</span>
+      <span class="n">f1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">seed_f1</span><span class="p">))</span>        
+    <span class="k">else</span><span class="p">:</span>
+      <span class="c1"># There&#39;s only 1 seed per run</span>
+      <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;results&#39;</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="s1">&#39;log.txt&#39;</span><span class="p">))</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+
+      <span class="n">curr_runtimes</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">runtime_key</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">runtime_key</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;:&#39;</span><span class="p">):</span>
+              <span class="n">curr_runtimes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">runtime_key</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()[</span><span class="mi">1</span><span class="p">:]))</span>
+            <span class="k">else</span><span class="p">:</span>
+              <span class="n">curr_runtimes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">runtime_key</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+      
+        <span class="k">if</span> <span class="n">f1_key</span> <span class="ow">in</span> <span class="n">line</span><span class="p">:</span>
+          <span class="n">f1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">f1_key</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()))</span>
+      <span class="n">runtime</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr_runtimes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+  <span class="k">return</span> <span class="n">runtime</span><span class="p">,</span> <span class="n">f1</span>
+
+<span class="k">def</span> <span class="nf">plot_runtime_f1</span><span class="p">(</span><span class="n">runtime</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">labels</span><span class="p">):</span>
+  <span class="k">assert</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">runtime</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">f1</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span>
+
+  <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+  <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+      <span class="n">item</span> <span class="o">=</span> <span class="n">item</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">runtime</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">f1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">label</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_sd&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+
+  <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span> <span class="mi">400</span><span class="p">])</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">])</span>  
+  <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Runtime (s)&quot;</span><span class="p">)</span>
+  <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;F1 score&quot;</span><span class="p">)</span>    
+  <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper center&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="mf">0.1</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Directory names to plot inside near_code/results</span>
+<span class="n">run_names_to_plot</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;investigation_base_enumeration_sd_1_001&#39;</span><span class="p">,</span> 
+                     <span class="s1">&#39;investigation_morlet_enumeration_sd_1_001&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;investigation_base_astar-near_sd_1_001&#39;</span><span class="p">,</span>
+                     <span class="s1">&#39;investigation_morlet_astar-near_sd_1_001&#39;</span><span class="p">]</span>
+
+<span class="n">runtime</span><span class="p">,</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">parse_runtime_f1_from_logs</span><span class="p">(</span><span class="n">run_names_to_plot</span><span class="p">)</span>
+
+<span class="n">plot_runtime_f1</span><span class="p">(</span><span class="n">runtime</span><span class="p">,</span> <span class="n">f1</span><span class="p">,</span> <span class="n">run_names_to_plot</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>investigation_base_enumeration_sd_1_001
+investigation_morlet_enumeration_sd_1_001
+investigation_base_astar-near_sd_1_001
+investigation_morlet_astar-near_sd_1_001
+</pre></div>
+</div>
+<img alt="_images/neurosymbolic_notebook3_24_1.png" src="_images/neurosymbolic_notebook3_24_1.png" />
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="optional-open-ended-exploration">
+<h1>[Optional] Open-Ended Exploration<a class="headerlink" href="#optional-open-ended-exploration" title="Permalink to this headline">#</a></h1>
+<p>Can you improve the performance of neurally-guided program search? Submit your runs on seed 1 (default) to <a class="reference external" href="https://forms.gle/peEi6vryaJQejTcn9">https://forms.gle/peEi6vryaJQejTcn9</a>. Feel free to make any changes to the code! Below are some suggestions:</p>
+<ul class="simple">
+<li><p>Modifying neural heuristic: looking at the neural modules in <code class="docutils literal notranslate"><span class="pre">dsl.ipynb</span></code>, such as <code class="docutils literal notranslate"><span class="pre">ListToAtomModule</span></code> or <code class="docutils literal notranslate"><span class="pre">AtomToAtomModule</span></code> and the hyperparameters for training the neural approximators, are you able to improve the neural heuristic we currently use? The ideal neural heuristic would be able to be trained quickly, while approximating the program performance closely and is admissible.</p></li>
+<li><p>Modify search space: are there any modifications you can make to the search space, for example, through modifying the DSL or min/max program depth that leads to better runtime and performance?</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="optional-modify-architecture-of-atomtoatom-heuristic">
+<h1>[Optional] Modify Architecture of AtomToAtom Heuristic<a class="headerlink" href="#optional-modify-architecture-of-atomtoatom-heuristic" title="Permalink to this headline">#</a></h1>
+<p>In <code class="docutils literal notranslate"><span class="pre">dsl.ipynb</span></code>, the architecture of the neural heuristics used are defined in the Section called Neural Functions. In this section, the <code class="docutils literal notranslate"><span class="pre">AtomToAtomModule</span></code> in <code class="docutils literal notranslate"><span class="pre">dsl.ipynb</span></code> uses a 2-layer network in <code class="docutils literal notranslate"><span class="pre">FeedForwardModule</span></code> as the neural approximator. Modify the network architecture to add a third layer and run NEAR below. Do you observe any changes in performance? Why or why not?</p>
+<p><strong>Important</strong>: after modifying <code class="docutils literal notranslate"><span class="pre">dsl.ipynb</span></code>, you will need to re-convert your new dsl to python files, included in the cell below.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!jupyter nbconvert --to python dsl.ipynb
+!jupyter nbconvert --to python near.ipynb
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!yes| python train.py \
+--algorithm astar-near \
+--exp_name investigation_morlet_3layer \
+--trial 1 \
+--seed 1 \
+--dsl_str &quot;morlet&quot; \
+--train_data &quot;data/calms21_task1/train_data.npy&quot; \
+--test_data &quot;data/calms21_task1/test_data.npy&quot; \
+--valid_data &quot;data/calms21_task1/val_data.npy&quot; \
+--train_labels &quot;data/calms21_task1/train_investigation_labels.npy&quot; \
+--test_labels &quot;data/calms21_task1/test_investigation_labels.npy&quot; \
+--valid_labels &quot;data/calms21_task1/val_investigation_labels.npy&quot; \
+--input_type &quot;list&quot; \
+--output_type &quot;atom&quot; \
+--input_size 18 \
+--output_size 1 \
+--num_labels 1 \
+--lossfxn &quot;bcelogits&quot; \
+--frontier_capacity 8 \
+--max_num_children 10 \
+--max_depth 5 \
+--max_num_units 16 \
+--min_num_units 8 \
+--learning_rate 0.0001 \
+--neural_epochs 4 \
+--symbolic_epochs 12 \
+--class_weights &quot;2.0&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result program found in save path, overwrite log and program? [y/n]Seed is 1
+Experiment log and results saved at: results/investigation_morlet_3layer_astar-near_sd_1_001
+
+Training root program ...
+/content/drive/MyDrive/neurosymbolic_summer_school_notebooks/code_sketch/near_code/near.py:219: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:210.)
+  batch_input = [torch.tensor(traj) for traj in batch]
+Initial training complete. F1-Score from program is 0.1141 
+
+CURRENT program has depth 0, fscore inf: Start(ListToAtomModule)
+Training child program: Start(Or(ListToAtomModule, ListToAtomModule))
+DEBUG: f-score 0.7521428571428572
+Training child program: Start(And(ListToAtomModule, ListToAtomModule))
+DEBUG: f-score 0.9096103896103896
+Training child program: Start(MorletFilterOp(AtomToAtomModule))
+DEBUG: f-score 0.8221019108280255
+Frontier length is: 3
+Total time elapsed is 8.946
+
+CURRENT program has depth 1, fscore 0.7521: Start(Or(ListToAtomModule, ListToAtomModule))
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), ListToAtomModule))
+DEBUG: f-score 0.8214691943127963
+Frontier length is: 3
+Total time elapsed is 12.036
+
+CURRENT program has depth 2, fscore 0.8215: Start(Or(MorletFilterOp(AtomToAtomModule), ListToAtomModule))
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(AtomToAtomModule)))
+DEBUG: f-score 0.6426143790849674
+Frontier length is: 3
+Total time elapsed is 14.759
+
+CURRENT program has depth 3, fscore 0.6426: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(AtomToAtomModule)))
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(ResAngleHeadBodySelect())))
+DEBUG: f-score 0.6952667578659371
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(SpeedSelect())))
+DEBUG: f-score 0.891400730816078
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(TangentialVelocitySelect())))
+DEBUG: f-score 0.9013396004700353
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(AccelerationSelect())))
+DEBUG: f-score 0.5935390199637023
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(RelativeSocialAngleSelect())))
+DEBUG: f-score 0.6602046035805627
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(AxisRatioSelect())))
+DEBUG: f-score 0.7183216783216784
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(OverlapBboxesSelect())))
+DEBUG: f-score 0.9151814223512337
+POP Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(OverlapBboxesSelect()))) with fscore 0.9152
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(MinResNoseKeypointDistanceSelect())))
+DEBUG: f-score 1.0381834695731154
+POP Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(MinResNoseKeypointDistanceSelect()))) with fscore 1.0382
+Frontier length is: 8
+Total time elapsed is 34.777
+
+CURRENT program has depth 4, fscore 0.5935: Start(Or(MorletFilterOp(AtomToAtomModule), MorletFilterOp(AccelerationSelect())))
+Training child program: Start(Or(MorletFilterOp(ResAngleHeadBodySelect()), MorletFilterOp(AccelerationSelect())))
+DEBUG: f-score 0.6286402753872634
+New BEST program found:
+Start(Or(MorletFilterOp(ResAngleHeadBodySelect()), MorletFilterOp(AccelerationSelect())))
+struct_cost 0.0400 | score 0.5886 | path_cost 0.6286 | time 41.8963
+Training child program: Start(Or(MorletFilterOp(SpeedSelect()), MorletFilterOp(AccelerationSelect())))
+DEBUG: f-score 0.646951871657754
+Training child program: Start(Or(MorletFilterOp(TangentialVelocitySelect()), MorletFilterOp(AccelerationSelect())))
+DEBUG: f-score 0.6453811659192825
+Training child program: Start(Or(MorletFilterOp(AccelerationSelect()), MorletFilterOp(AccelerationSelect())))
+DEBUG: f-score 0.6999378881987578
+Training child program: Start(Or(MorletFilterOp(RelativeSocialAngleSelect()), MorletFilterOp(AccelerationSelect())))
+DEBUG: f-score 0.6929230769230769
+Training child program: Start(Or(MorletFilterOp(AxisRatioSelect()), MorletFilterOp(AccelerationSelect())))
+DEBUG: f-score 0.7631352718078381
+Training child program: Start(Or(MorletFilterOp(OverlapBboxesSelect()), MorletFilterOp(AccelerationSelect())))
+DEBUG: f-score 0.3221292775665399
+New BEST program found:
+Start(Or(MorletFilterOp(OverlapBboxesSelect()), MorletFilterOp(AccelerationSelect())))
+struct_cost 0.0400 | score 0.2821 | path_cost 0.3221 | time 83.3394
+Training child program: Start(Or(MorletFilterOp(MinResNoseKeypointDistanceSelect()), MorletFilterOp(AccelerationSelect())))
+DEBUG: f-score 1.0346127946127945
+Frontier length is: 0
+Total time elapsed is 90.187
+
+
+
+BEST programs found:
+Start(Or(MorletFilterOp(ResAngleHeadBodySelect()), MorletFilterOp(AccelerationSelect())))
+struct_cost 0.0400 | score 0.5886 | path_cost 0.6286 | time 41.8963
+Start(Or(MorletFilterOp(OverlapBboxesSelect()), MorletFilterOp(AccelerationSelect())))
+struct_cost 0.0400 | score 0.2821 | path_cost 0.3221 | time 83.3394
+
+
+Evaluating program Start(Or(MorletFilterOp(OverlapBboxesSelect()), MorletFilterOp(AccelerationSelect()))) on TEST SET
+F1 score achieved is 0.6300
+Additional performance parameters: {&#39;hamming_accuracy&#39;: 0.749, &#39;all_f1s&#39;: array([0.81008827, 0.62997543])}
+
+ALGORITHM END 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="optional-near-iddfs-search-morlet-dsl">
+<h1>[Optional] NEAR: IDDFS Search - Morlet DSL<a class="headerlink" href="#optional-near-iddfs-search-morlet-dsl" title="Permalink to this headline">#</a></h1>
+<p>The admissible heuristics used by NEAR is compatible with different search strategies - here, we use <a class="reference external" href="https://en.wikipedia.org/wiki/Iterative_deepening_depth-first_search">iterative deepening depth-first search</a> (IDDFS) instead of A* search through the program space. IDDFS is a search strategy where depth-limited version of depth-first search is run repreatedly with increasing depth limits.</p>
+<p>How does the performance of IDDFS compare to A* on this dataset?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!yes| python train.py \
+--algorithm iddfs-near \
+--exp_name investigation_morlet \
+--trial 1 \
+--seed 1 \
+--dsl_str &quot;morlet&quot; \
+--train_data &quot;data/calms21_task1/train_data.npy&quot; \
+--test_data &quot;data/calms21_task1/test_data.npy&quot; \
+--valid_data &quot;data/calms21_task1/val_data.npy&quot; \
+--train_labels &quot;data/calms21_task1/train_investigation_labels.npy&quot; \
+--test_labels &quot;data/calms21_task1/test_investigation_labels.npy&quot; \
+--valid_labels &quot;data/calms21_task1/val_investigation_labels.npy&quot; \
+--input_type &quot;list&quot; \
+--output_type &quot;atom&quot; \
+--input_size 18 \
+--output_size 1 \
+--num_labels 1 \
+--lossfxn &quot;bcelogits&quot; \
+--frontier_capacity 5 \
+--max_num_children 10 \
+--max_depth 5 \
+--max_num_units 16 \
+--min_num_units 8 \
+--learning_rate 0.0001 \
+--neural_epochs 4 \
+--symbolic_epochs 12 \
+--class_weights &quot;2.0&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result program found in save path, overwrite log and program? [y/n]Seed is 1
+Experiment log and results saved at: results/investigation_morlet_iddfs-near_sd_1_001
+
+Training root program ...
+/content/drive/MyDrive/neurosymbolic_summer_school_notebooks/code_sketch/near_code/near.py:219: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:210.)
+  batch_input = [torch.tensor(traj) for traj in batch]
+Initial training complete. Score from program is 0.1141 
+
+CURRENT program has depth 0, fscore inf: Start(ListToAtomModule)
+Frontier length is: 0
+Frontier length is now 0
+Empty frontier, moving to next depth level
+DEBUG: time since start is 8.520
+
+Starting iterative deepening with depth 2
+
+CURRENT program has depth 1, fscore 0.4796: Start(MorletFilterOp(AtomToAtomModule))
+New BEST program found:
+Start(MorletFilterOp(ResAngleHeadBodySelect()))
+struct_cost 0.0100 | score 0.5811 | path_cost 0.5911 | time 16.6010
+New BEST program found:
+Start(MorletFilterOp(SpeedSelect()))
+struct_cost 0.0100 | score 0.5544 | path_cost 0.5644 | time 22.2089
+New BEST program found:
+Start(MorletFilterOp(MinResNoseKeypointDistanceSelect()))
+struct_cost 0.0100 | score 0.2428 | path_cost 0.2528 | time 55.2963
+Frontier length is: 2
+PRUNE from frontier: Start(And(ListToAtomModule, ListToAtomModule)) with f_score 0.9547079037800688
+PRUNE from frontier: Start(Or(ListToAtomModule, ListToAtomModule)) with f_score 0.7317903930131004
+Frontier length is now 0
+Empty frontier, moving to next depth level
+DEBUG: time since start is 55.300
+
+Starting iterative deepening with depth 3
+
+CURRENT program has depth 2, fscore 0.5148: Start(MorletFilterOp(SimpleITE(AtomToAtomModule, AtomToAtomModule, AtomToAtomModule)))
+POP Start(MorletFilterOp(SimpleITE(TangentialVelocitySelect(), AtomToAtomModule, AtomToAtomModule))) with fscore 0.6473
+POP Start(MorletFilterOp(SimpleITE(AccelerationSelect(), AtomToAtomModule, AtomToAtomModule))) with fscore 0.7745
+POP Start(MorletFilterOp(SimpleITE(SpeedSelect(), AtomToAtomModule, AtomToAtomModule))) with fscore 0.9958
+Frontier length is: 0
+Frontier length is now 0
+Empty frontier, moving to next depth level
+DEBUG: time since start is 74.843
+
+Starting iterative deepening with depth 4
+
+CURRENT program has depth 3, fscore 0.4410: Start(MorletFilterOp(SimpleITE(MinResNoseKeypointDistanceSelect(), AtomToAtomModule, AtomToAtomModule)))
+POP Start(MorletFilterOp(SimpleITE(MinResNoseKeypointDistanceSelect(), AccelerationSelect(), AtomToAtomModule))) with fscore 0.6534
+POP Start(MorletFilterOp(SimpleITE(MinResNoseKeypointDistanceSelect(), SpeedSelect(), AtomToAtomModule))) with fscore 0.7858
+POP Start(MorletFilterOp(SimpleITE(MinResNoseKeypointDistanceSelect(), OverlapBboxesSelect(), AtomToAtomModule))) with fscore 0.9602
+Frontier length is: 4
+PRUNE from frontier: Start(MorletFilterOp(SimpleITE(OverlapBboxesSelect(), AtomToAtomModule, AtomToAtomModule))) with f_score 0.6256031128404669
+PRUNE from frontier: Start(MorletFilterOp(SimpleITE(AxisRatioSelect(), AtomToAtomModule, AtomToAtomModule))) with f_score 0.45772151898734176
+PRUNE from frontier: Start(MorletFilterOp(SimpleITE(RelativeSocialAngleSelect(), AtomToAtomModule, AtomToAtomModule))) with f_score 0.48800000000000004
+PRUNE from frontier: Start(MorletFilterOp(SimpleITE(ResAngleHeadBodySelect(), AtomToAtomModule, AtomToAtomModule))) with f_score 0.5257142857142858
+Frontier length is now 0
+Empty frontier, moving to next depth level
+DEBUG: time since start is 94.350
+
+Starting iterative deepening with depth 5
+
+CURRENT program has depth 4, fscore 0.3113: Start(MorletFilterOp(SimpleITE(MinResNoseKeypointDistanceSelect(), MinResNoseKeypointDistanceSelect(), AtomToAtomModule)))
+Frontier length is: 4
+PRUNE from frontier: Start(MorletFilterOp(SimpleITE(MinResNoseKeypointDistanceSelect(), AxisRatioSelect(), AtomToAtomModule))) with f_score 0.644306864064603
+PRUNE from frontier: Start(MorletFilterOp(SimpleITE(MinResNoseKeypointDistanceSelect(), RelativeSocialAngleSelect(), AtomToAtomModule))) with f_score 0.5185478547854786
+PRUNE from frontier: Start(MorletFilterOp(SimpleITE(MinResNoseKeypointDistanceSelect(), TangentialVelocitySelect(), AtomToAtomModule))) with f_score 0.4167441860465117
+PRUNE from frontier: Start(MorletFilterOp(SimpleITE(MinResNoseKeypointDistanceSelect(), ResAngleHeadBodySelect(), AtomToAtomModule))) with f_score 0.5876190476190477
+Frontier length is now 0
+Empty frontier, moving to next depth level
+DEBUG: time since start is 149.124
+
+Max depth 5 reached. Exiting.
+
+
+
+BEST programs found:
+Start(MorletFilterOp(ResAngleHeadBodySelect()))
+struct_cost 0.0100 | score 0.5811 | path_cost 0.5911 | time 16.6010
+Start(MorletFilterOp(SpeedSelect()))
+struct_cost 0.0100 | score 0.5544 | path_cost 0.5644 | time 22.2089
+Start(MorletFilterOp(MinResNoseKeypointDistanceSelect()))
+struct_cost 0.0100 | score 0.2428 | path_cost 0.2528 | time 55.2963
+
+
+Evaluating program Start(MorletFilterOp(MinResNoseKeypointDistanceSelect())) on TEST SET
+F1 score achieved is 0.6564
+Additional performance parameters: {&#39;hamming_accuracy&#39;: 0.7773333333333333, &#39;all_f1s&#39;: array([0.83530572, 0.6563786 ])}
+
+ALGORITHM END 
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="optional-additional-experiments-test-on-other-behavior-classes">
+<h1>[Optional] Additional Experiments: Test on Other Behavior Classes<a class="headerlink" href="#optional-additional-experiments-test-on-other-behavior-classes" title="Permalink to this headline">#</a></h1>
+<p>In behavior analysis, animals exhibit a wide range of behaviors, and the goal of behavioral neuroscience is to learn the neural basis of these behaviors. Investigation vs. no investigation is one example of a human-defined behavior, but there’s also behaviors such as mount, attack, rearing, approach, groom, …</p>
+<p>Here, we provide an additional set of behavior annotations for mount. How does the DSL and algorithm you developed compare to using enumeration as a baseline for program search? Mount is a relatively rare class compared to investigation - how do the performances compare?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!yes | python train.py \
+--algorithm enumeration \
+--exp_name investigation_morlet \
+--trial 1 \
+--seed 1 \
+--dsl_str &quot;morlet&quot; \
+--train_data &quot;data/calms21_task1/train_data.npy&quot; \
+--test_data &quot;data/calms21_task1/test_data.npy&quot; \
+--valid_data &quot;data/calms21_task1/val_data.npy&quot; \
+--train_labels &quot;data/calms21_task1/train_mount_labels.npy&quot; \
+--test_labels &quot;data/calms21_task1/test_mount_labels.npy&quot; \
+--valid_labels &quot;data/calms21_task1/val_mount_labels.npy&quot; \
+--input_type &quot;list&quot; \
+--output_type &quot;atom&quot; \
+--input_size 18 \
+--output_size 1 \
+--num_labels 1 \
+--lossfxn &quot;bcelogits&quot; \
+--learning_rate 0.0001 \
+--symbolic_epochs 12 \
+--max_num_programs 25 \
+--class_weights &quot;2.0&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result program found in save path, overwrite log and program? [y/n]Seed is 1
+Experiment log and results saved at: results/investigation_morlet_enumeration_sd_1_001
+
+DEBUG: starting enumerative synthesis with depth 1
+DEBUG: 0 programs found
+DEBUG: starting enumerative synthesis with depth 2
+DEBUG: 8 programs found
+DEBUG: starting enumerative synthesis with depth 3
+DEBUG: 8 programs found
+DEBUG: starting enumerative synthesis with depth 4
+DEBUG: 8 programs found
+DEBUG: starting enumerative synthesis with depth 5
+DEBUG: 648 programs found
+Symbolic Synthesis: generated 648/25 symbolic programs from candidate program.
+Training candidate program (1/25) Start(MorletFilterOp(ResAngleHeadBodySelect()))
+/content/drive/MyDrive/neurosymbolic_summer_school_notebooks/code_sketch/near_code/near.py:219: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:210.)
+  batch_input = [torch.tensor(traj) for traj in batch]
+Structural cost is 0.01 with structural penalty 0.01
+Time to train child 5.567
+Total time elapsed is: 5.567
+New tentative BEST program found:
+Start(MorletFilterOp(ResAngleHeadBodySelect()))
+struct_cost 0.0100 | score 1.0000 | path_cost 1.0100 | time 5.5675
+Training candidate program (2/25) Start(MorletFilterOp(SpeedSelect()))
+Structural cost is 0.01 with structural penalty 0.01
+Time to train child 5.633
+Total time elapsed is: 11.204
+New tentative BEST program found:
+Start(MorletFilterOp(SpeedSelect()))
+struct_cost 0.0100 | score 0.9581 | path_cost 0.9681 | time 11.2037
+Training candidate program (3/25) Start(MorletFilterOp(TangentialVelocitySelect()))
+Structural cost is 0.01 with structural penalty 0.01
+Time to train child 5.570
+Total time elapsed is: 16.776
+New tentative BEST program found:
+Start(MorletFilterOp(TangentialVelocitySelect()))
+struct_cost 0.0100 | score 0.9576 | path_cost 0.9676 | time 16.7764
+Training candidate program (4/25) Start(MorletFilterOp(AccelerationSelect()))
+Structural cost is 0.01 with structural penalty 0.01
+Time to train child 5.575
+Total time elapsed is: 22.354
+New tentative BEST program found:
+Start(MorletFilterOp(AccelerationSelect()))
+struct_cost 0.0100 | score 0.8676 | path_cost 0.8776 | time 22.3540
+Training candidate program (5/25) Start(MorletFilterOp(RelativeSocialAngleSelect()))
+Structural cost is 0.01 with structural penalty 0.01
+Time to train child 5.480
+Total time elapsed is: 27.837
+Training candidate program (6/25) Start(MorletFilterOp(AxisRatioSelect()))
+Structural cost is 0.01 with structural penalty 0.01
+Time to train child 5.506
+Total time elapsed is: 33.343
+Training candidate program (7/25) Start(MorletFilterOp(OverlapBboxesSelect()))
+Structural cost is 0.01 with structural penalty 0.01
+Time to train child 5.543
+Total time elapsed is: 38.886
+Training candidate program (8/25) Start(MorletFilterOp(MinResNoseKeypointDistanceSelect()))
+Structural cost is 0.01 with structural penalty 0.01
+Time to train child 5.603
+Total time elapsed is: 44.489
+Training candidate program (9/25) Start(Or(MorletFilterOp(ResAngleHeadBodySelect()), MorletFilterOp(ResAngleHeadBodySelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.907
+Total time elapsed is: 51.397
+Training candidate program (10/25) Start(Or(MorletFilterOp(SpeedSelect()), MorletFilterOp(ResAngleHeadBodySelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.869
+Total time elapsed is: 58.266
+Training candidate program (11/25) Start(Or(MorletFilterOp(TangentialVelocitySelect()), MorletFilterOp(ResAngleHeadBodySelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.883
+Total time elapsed is: 65.149
+Training candidate program (12/25) Start(Or(MorletFilterOp(AccelerationSelect()), MorletFilterOp(ResAngleHeadBodySelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.994
+Total time elapsed is: 72.144
+Training candidate program (13/25) Start(Or(MorletFilterOp(RelativeSocialAngleSelect()), MorletFilterOp(ResAngleHeadBodySelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.777
+Total time elapsed is: 78.921
+Training candidate program (14/25) Start(Or(MorletFilterOp(AxisRatioSelect()), MorletFilterOp(ResAngleHeadBodySelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.769
+Total time elapsed is: 85.690
+Training candidate program (15/25) Start(Or(MorletFilterOp(OverlapBboxesSelect()), MorletFilterOp(ResAngleHeadBodySelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.775
+Total time elapsed is: 92.466
+Training candidate program (16/25) Start(Or(MorletFilterOp(MinResNoseKeypointDistanceSelect()), MorletFilterOp(ResAngleHeadBodySelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.724
+Total time elapsed is: 99.190
+Training candidate program (17/25) Start(Or(MorletFilterOp(ResAngleHeadBodySelect()), MorletFilterOp(SpeedSelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.900
+Total time elapsed is: 106.090
+Training candidate program (18/25) Start(Or(MorletFilterOp(SpeedSelect()), MorletFilterOp(SpeedSelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.935
+Total time elapsed is: 113.025
+Training candidate program (19/25) Start(Or(MorletFilterOp(TangentialVelocitySelect()), MorletFilterOp(SpeedSelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.794
+Total time elapsed is: 119.819
+Training candidate program (20/25) Start(Or(MorletFilterOp(AccelerationSelect()), MorletFilterOp(SpeedSelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.810
+Total time elapsed is: 126.630
+Training candidate program (21/25) Start(Or(MorletFilterOp(RelativeSocialAngleSelect()), MorletFilterOp(SpeedSelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.820
+Total time elapsed is: 133.450
+Training candidate program (22/25) Start(Or(MorletFilterOp(AxisRatioSelect()), MorletFilterOp(SpeedSelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.813
+Total time elapsed is: 140.263
+Training candidate program (23/25) Start(Or(MorletFilterOp(OverlapBboxesSelect()), MorletFilterOp(SpeedSelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.767
+Total time elapsed is: 147.030
+Training candidate program (24/25) Start(Or(MorletFilterOp(MinResNoseKeypointDistanceSelect()), MorletFilterOp(SpeedSelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.796
+Total time elapsed is: 153.826
+Training candidate program (25/25) Start(Or(MorletFilterOp(ResAngleHeadBodySelect()), MorletFilterOp(TangentialVelocitySelect())))
+Structural cost is 0.04 with structural penalty 0.01
+Time to train child 6.770
+Total time elapsed is: 160.597
+Total time elapsed is 160.639
+
+
+BEST programs found:
+Start(Or(MorletFilterOp(MinResNoseKeypointDistanceSelect()), MorletFilterOp(SpeedSelect())))
+struct_cost 0.0400 | score 0.9965 | path_cost 1.0365 | time 153.8263
+Start(Or(MorletFilterOp(MinResNoseKeypointDistanceSelect()), MorletFilterOp(ResAngleHeadBodySelect())))
+struct_cost 0.0400 | score 0.9964 | path_cost 1.0364 | time 99.1899
+Start(Or(MorletFilterOp(ResAngleHeadBodySelect()), MorletFilterOp(TangentialVelocitySelect())))
+struct_cost 0.0400 | score 0.9861 | path_cost 1.0261 | time 160.5970
+Start(Or(MorletFilterOp(AxisRatioSelect()), MorletFilterOp(ResAngleHeadBodySelect())))
+struct_cost 0.0400 | score 0.9815 | path_cost 1.0215 | time 85.6902
+Start(MorletFilterOp(ResAngleHeadBodySelect()))
+struct_cost 0.0100 | score 1.0000 | path_cost 1.0100 | time 5.5675
+Start(Or(MorletFilterOp(AxisRatioSelect()), MorletFilterOp(SpeedSelect())))
+struct_cost 0.0400 | score 0.9673 | path_cost 1.0073 | time 140.2630
+Start(MorletFilterOp(OverlapBboxesSelect()))
+struct_cost 0.0100 | score 0.9971 | path_cost 1.0071 | time 38.8865
+Start(Or(MorletFilterOp(ResAngleHeadBodySelect()), MorletFilterOp(ResAngleHeadBodySelect())))
+struct_cost 0.0400 | score 0.9665 | path_cost 1.0065 | time 51.3970
+Start(Or(MorletFilterOp(AccelerationSelect()), MorletFilterOp(SpeedSelect())))
+struct_cost 0.0400 | score 0.9658 | path_cost 1.0058 | time 126.6298
+Start(Or(MorletFilterOp(TangentialVelocitySelect()), MorletFilterOp(ResAngleHeadBodySelect())))
+struct_cost 0.0400 | score 0.9608 | path_cost 1.0008 | time 65.1496
+Start(Or(MorletFilterOp(ResAngleHeadBodySelect()), MorletFilterOp(SpeedSelect())))
+struct_cost 0.0400 | score 0.9566 | path_cost 0.9966 | time 106.0904
+Start(Or(MorletFilterOp(RelativeSocialAngleSelect()), MorletFilterOp(SpeedSelect())))
+struct_cost 0.0400 | score 0.9561 | path_cost 0.9961 | time 133.4501
+Start(Or(MorletFilterOp(AccelerationSelect()), MorletFilterOp(ResAngleHeadBodySelect())))
+struct_cost 0.0400 | score 0.9520 | path_cost 0.9920 | time 72.1440
+Start(Or(MorletFilterOp(TangentialVelocitySelect()), MorletFilterOp(SpeedSelect())))
+struct_cost 0.0400 | score 0.9379 | path_cost 0.9779 | time 119.8194
+Start(Or(MorletFilterOp(RelativeSocialAngleSelect()), MorletFilterOp(ResAngleHeadBodySelect())))
+struct_cost 0.0400 | score 0.9332 | path_cost 0.9732 | time 78.9208
+Start(Or(MorletFilterOp(SpeedSelect()), MorletFilterOp(ResAngleHeadBodySelect())))
+struct_cost 0.0400 | score 0.9320 | path_cost 0.9720 | time 58.2664
+Start(Or(MorletFilterOp(SpeedSelect()), MorletFilterOp(SpeedSelect())))
+struct_cost 0.0400 | score 0.9315 | path_cost 0.9715 | time 113.0255
+Start(MorletFilterOp(SpeedSelect()))
+struct_cost 0.0100 | score 0.9581 | path_cost 0.9681 | time 11.2037
+Start(MorletFilterOp(TangentialVelocitySelect()))
+struct_cost 0.0100 | score 0.9576 | path_cost 0.9676 | time 16.7764
+Start(MorletFilterOp(RelativeSocialAngleSelect()))
+struct_cost 0.0100 | score 0.9454 | path_cost 0.9554 | time 27.8368
+Start(MorletFilterOp(MinResNoseKeypointDistanceSelect()))
+struct_cost 0.0100 | score 0.9151 | path_cost 0.9251 | time 44.4893
+Start(Or(MorletFilterOp(OverlapBboxesSelect()), MorletFilterOp(SpeedSelect())))
+struct_cost 0.0400 | score 0.8845 | path_cost 0.9245 | time 147.0305
+Start(MorletFilterOp(AxisRatioSelect()))
+struct_cost 0.0100 | score 0.9096 | path_cost 0.9196 | time 33.3433
+Start(Or(MorletFilterOp(OverlapBboxesSelect()), MorletFilterOp(ResAngleHeadBodySelect())))
+struct_cost 0.0400 | score 0.8784 | path_cost 0.9184 | time 92.4659
+Start(MorletFilterOp(AccelerationSelect()))
+struct_cost 0.0100 | score 0.8676 | path_cost 0.8776 | time 22.3540
+
+
+Evaluating program Start(MorletFilterOp(AccelerationSelect())) on TEST SET
+F1 score achieved is 0.1370
+Additional performance parameters: {&#39;hamming_accuracy&#39;: 0.727, &#39;all_f1s&#39;: array([0.83785389, 0.1369863 ])}
+
+ALGORITHM END 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>!yes| python train.py \
+--algorithm astar-near \
+--exp_name investigation_morlet \
+--trial 1 \
+--seed 1 \
+--dsl_str &quot;morlet&quot; \
+--train_data &quot;data/calms21_task1/train_data.npy&quot; \
+--test_data &quot;data/calms21_task1/test_data.npy&quot; \
+--valid_data &quot;data/calms21_task1/val_data.npy&quot; \
+--train_labels &quot;data/calms21_task1/train_mount_labels.npy&quot; \
+--test_labels &quot;data/calms21_task1/test_mount_labels.npy&quot; \
+--valid_labels &quot;data/calms21_task1/val_mount_labels.npy&quot; \
+--input_type &quot;list&quot; \
+--output_type &quot;atom&quot; \
+--input_size 18 \
+--output_size 1 \
+--num_labels 1 \
+--lossfxn &quot;bcelogits&quot; \
+--frontier_capacity 8 \
+--max_num_children 10 \
+--max_depth 5 \
+--max_num_units 32 \
+--min_num_units 16 \
+--learning_rate 0.0001 \
+--neural_epochs 4 \
+--symbolic_epochs 12 \
+--class_weights &quot;2.0&quot;
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Result program found in save path, overwrite log and program? [y/n]Seed is 1
+Experiment log and results saved at: results/investigation_morlet_astar-near_sd_1_001
+
+Training root program ...
+/content/drive/MyDrive/neurosymbolic_summer_school_notebooks/code_sketch/near_code/near.py:219: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at  ../torch/csrc/utils/tensor_new.cpp:210.)
+  batch_input = [torch.tensor(traj) for traj in batch]
+Initial training complete. F1-Score from program is 0.3256 
+
+CURRENT program has depth 0, fscore inf: Start(ListToAtomModule)
+Training child program: Start(Or(ListToAtomModule, ListToAtomModule))
+DEBUG: f-score 0.6866666666666668
+Training child program: Start(And(ListToAtomModule, ListToAtomModule))
+DEBUG: f-score 0.6376470588235293
+Training child program: Start(MorletFilterOp(AtomToAtomModule))
+DEBUG: f-score 0.9772131147540983
+Frontier length is: 3
+Total time elapsed is 8.758
+
+CURRENT program has depth 1, fscore 0.6376: Start(And(ListToAtomModule, ListToAtomModule))
+Training child program: Start(And(MorletFilterOp(AtomToAtomModule), ListToAtomModule))
+DEBUG: f-score 0.48882352941176477
+Frontier length is: 3
+Total time elapsed is 11.837
+
+CURRENT program has depth 2, fscore 0.4888: Start(And(MorletFilterOp(AtomToAtomModule), ListToAtomModule))
+Training child program: Start(And(MorletFilterOp(AtomToAtomModule), MorletFilterOp(AtomToAtomModule)))
+DEBUG: f-score 1.04
+Frontier length is: 3
+Total time elapsed is 14.551
+
+CURRENT program has depth 1, fscore 0.6867: Start(Or(ListToAtomModule, ListToAtomModule))
+Training child program: Start(Or(MorletFilterOp(AtomToAtomModule), ListToAtomModule))
+DEBUG: f-score 0.9972131147540984
+Frontier length is: 3
+Total time elapsed is 17.611
+
+CURRENT program has depth 1, fscore 0.9772: Start(MorletFilterOp(AtomToAtomModule))
+Training child program: Start(MorletFilterOp(SimpleITE(AtomToAtomModule, AtomToAtomModule, AtomToAtomModule)))
+DEBUG: f-score 1.04
+Training child program: Start(MorletFilterOp(ResAngleHeadBodySelect()))
+DEBUG: f-score 0.9843589743589743
+New BEST program found:
+Start(MorletFilterOp(ResAngleHeadBodySelect()))
+struct_cost 0.0100 | score 0.9744 | path_cost 0.9844 | time 25.9099
+Training child program: Start(MorletFilterOp(SpeedSelect()))
+DEBUG: f-score 0.9462912400455062
+New BEST program found:
+Start(MorletFilterOp(SpeedSelect()))
+struct_cost 0.0100 | score 0.9363 | path_cost 0.9463 | time 31.3697
+Training child program: Start(MorletFilterOp(TangentialVelocitySelect()))
+DEBUG: f-score 0.9514414414414415
+Training child program: Start(MorletFilterOp(AccelerationSelect()))
+DEBUG: f-score 0.967962813257882
+Training child program: Start(MorletFilterOp(RelativeSocialAngleSelect()))
+DEBUG: f-score 0.9563667820069204
+Training child program: Start(MorletFilterOp(AxisRatioSelect()))
+DEBUG: f-score 0.8934244080145719
+New BEST program found:
+Start(MorletFilterOp(AxisRatioSelect()))
+struct_cost 0.0100 | score 0.8834 | path_cost 0.8934 | time 53.1102
+Training child program: Start(MorletFilterOp(OverlapBboxesSelect()))
+DEBUG: f-score 1.0085174203113416
+Training child program: Start(MorletFilterOp(MinResNoseKeypointDistanceSelect()))
+DEBUG: f-score 1.01
+Frontier length is: 0
+Total time elapsed is 64.072
+
+
+
+BEST programs found:
+Start(MorletFilterOp(ResAngleHeadBodySelect()))
+struct_cost 0.0100 | score 0.9744 | path_cost 0.9844 | time 25.9099
+Start(MorletFilterOp(SpeedSelect()))
+struct_cost 0.0100 | score 0.9363 | path_cost 0.9463 | time 31.3697
+Start(MorletFilterOp(AxisRatioSelect()))
+struct_cost 0.0100 | score 0.8834 | path_cost 0.8934 | time 53.1102
+
+
+Evaluating program Start(MorletFilterOp(AxisRatioSelect())) on TEST SET
+F1 score achieved is 0.3304
+Additional performance parameters: {&#39;hamming_accuracy&#39;: 0.6946666666666667, &#39;all_f1s&#39;: array([0.80224525, 0.33040936])}
+
+ALGORITHM END 
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Acknowledgements</strong>: This notebook was developed by Jennifer J. Sun  (Caltech) and Atharva Sengal (UT Austin) for <a class="reference external" href="http://www.neurosymbolic.org/summerschool.html">the neurosymbolic summer school</a>. The data subset is processed from CalMS21 and the DSL is developed by by Megan Tjandrasuwita (MIT) from her work on <a class="reference external" href="https://arxiv.org/pdf/2106.06114.pdf">Interpreting Expert Annotation Differences in Animal Behavior</a>. Megan’s work is partly based on <a class="reference external" href="https://github.com/trishullab/near/tree/master/near_code">NEAR</a> by Ameesh Shah (Berkeley) and Eric Zhan (Argo).</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Neurosymbolic Team (neurosymbolic.org)<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
