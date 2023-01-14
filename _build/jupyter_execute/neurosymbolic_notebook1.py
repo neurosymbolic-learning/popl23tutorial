@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# # Part 1
+# # Notebook 1
+# 
 # ## Instructions
 # 
 # **README** 
