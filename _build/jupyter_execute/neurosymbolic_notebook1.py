@@ -8,7 +8,7 @@
 # **README** 
 # 
 # * **Navigating this notebook on Google Colab:** There will be text blocks and code blocks throughout the notebook. The text blocks, such as this one, will contain instructions and questions for you to consider. The code blocks, such as the one below, will contain executible code.  Sometimes you will have to modify the code blocks following the instructions in the text blocks. You can run the code block by either pressing `control/cmd + enter` or by clicking the arrow on left-hand side as shown.
-#     ![img.png](imgs/guide.png)
+#     ![img.png](https://github.com/neurosymbolic-learning/Neurosymbolic_Tutorial/blob/popl23/imgs/guide.png?raw=true)
 # 
 # * **Saving Work**: If you wish to save your work in this `.ipynb`, we recommend [downloading](https://colab.research.google.com/drive/158b2-QhmlNnftfP0nOhYZK3UnOTmcAo-?authuser=1#scrollTo=Yw_du6e3fShY&line=4&uniqifier=1) the compressed repository from GitHub, unzipping it, uploading it to Google Drive, opening this notebook from within Google Drive, and setting `WITHIN_GDRIVE` to `True`.
 # 
@@ -46,7 +46,7 @@ import numpy as np
 # 
 # We will explore neurosymbolic models using a behavior analysis dataset. This dataset is a subset of [the Caltech Mouse Social Interactions Dataset (CalMS21)](https://https://arxiv.org/pdf/2104.02710.pdf). Neuroscientist study animal interactions to better understand the relationship between brain and behavior (see [MARS](https://elifesciences.org/articles/63720), [quantifying behavior review](https://www.nature.com/articles/s41593-020-00734-z), [decoding behavior article](https://www.quantamagazine.org/to-decode-the-brain-scientists-automate-the-study-of-behavior-20191210/)). Our goal is to map trajectory data (keypoints from two mice stacked over time `2 (mice) x 2 (x,y position) x 7 (7 keypoints per mice)`) to behaviors of interest identified by neuroscientists. The dataset consists of a pair of mice at each frame, the resident mouse in its home cage and the intruder mouse introduced to the cage.
 # 
-# ![content_task1_structure.png](imgs/mabeOverview.png)
+# ![content_task1_structure.png](https://github.com/neurosymbolic-learning/Neurosymbolic_Tutorial/blob/popl23/imgs/mabeOverview.png?raw=true)
 # 
 # The original dataset consists of over 3 million frames of annotations, with over 10 annotated behaviors. Fully neural models are benchmarked during the [the Multi-Agent Behavior Challenge](https://www.aicrowd.com/challenges/multi-agent-behavior-representation-modeling-measurement-and-applications) which took place in 2021 in conjunction with CVPR. We use a simplified and smaller version of the dataset for this tutorial (`5000 clips x 13 frames` with one annotated behavior of `investigation`, as well as `18` pre-computed features per frame, based on features identified by behavioral neuroscientists), but if you are interested in the full Multi-Agent Behavior challenge, the evaluator at the challenge link is open and available for the full dataset.Here, the `investigation` labels are class 1 and all other behaviors are class 0.
 # 
@@ -328,7 +328,7 @@ ani
 # 
 # One common way to train a neural network for sequence-to-one predictions is by using a 1D convolutional network (across the temporal dimension). We use the [Conv1D](https://pytorch.org/docs/stable/generated/torch.nn.Conv1d.html) implementation in Pytorch, within the Pytorch Lightning framework (a wrapper on top of Pytorch to simplify the code for training and data loading). Try going through the code below to familiarize yourself with training the 1D conv net below to get performance values of fully neural models on this dataset.
 # 
-# ![neurosym-model-arch.png](imgs/cnnOverview.png)
+# ![neurosym-model-arch.png](https://github.com/neurosymbolic-learning/Neurosymbolic_Tutorial/blob/popl23/imgs/cnnOverview.png?raw=true)
 # 
 # Important setups for the neural network training:
 # *   `TrainConfig`: defines hyperparameters for training
