@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Notebook 2 &#8212; Neurosymbolic Programming Tutorials</title>
+    <title>Notebook 2 &#8212; Neurosymbolic Programming Tutorial (POPL 2023)</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -92,7 +92,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <h1 class="site-logo" id="site-title">Neurosymbolic Programming Tutorials</h1>
+      <h1 class="site-logo" id="site-title">Neurosymbolic Programming Tutorial (POPL 2023)</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
@@ -489,7 +489,7 @@ title="Print to PDF"
 <p><strong>README</strong></p>
 <ul>
 <li><p><strong>Navigating this notebook on Google Colab:</strong> There will be text blocks and code blocks throughout the notebook. The text blocks, such as this one, will contain instructions and questions for you to consider. The code blocks, such as the one below, will contain executible code.  Sometimes you will have to modify the code blocks following the instructions in the text blocks. You can run the code block by either pressing <code class="docutils literal notranslate"><span class="pre">control/cmd</span> <span class="pre">+</span> <span class="pre">enter</span></code> or by clicking the arrow on left-hand side as shown.</p>
-<p><img alt="img.png" src="_images/guide.png" /></p>
+<p><img alt="img.png" src="https://github.com/neurosymbolic-learning/Neurosymbolic_Tutorial/blob/popl23/imgs/guide.png?raw=true" /></p>
 </li>
 <li><p><strong>Saving Work</strong>: If you wish to save your work in this <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>, we recommend <a class="reference external" href="https://colab.research.google.com/drive/158b2-QhmlNnftfP0nOhYZK3UnOTmcAo-?authuser=1#scrollTo=Yw_du6e3fShY&amp;line=4&amp;uniqifier=1">downloading</a> the compressed repository from GitHub, unzipping it, uploading it to Google Drive, opening this notebook from within Google Drive, and setting <code class="docutils literal notranslate"><span class="pre">WITHIN_GDRIVE</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p></li>
 <li><p>This notebook doesn’t require any modifications inside the <code class="docutils literal notranslate"><span class="pre">code_and_data</span></code> directory for a base walkthrough, but if you want to work on the optional exercises throughout the notebook, you will need to modify <code class="docutils literal notranslate"><span class="pre">dsl.ipynb</span></code>.</p></li>
@@ -574,7 +574,7 @@ Archive:  calms21_task1.zip
 <h1>Search Tree Visualization<a class="headerlink" href="#search-tree-visualization" title="Permalink to this headline">#</a></h1>
 <p>The Domain-Specific Languages we use for behavior analysis are in <code class="docutils literal notranslate"><span class="pre">dsl.ipynb</span></code>. Through this notebook, you will be training enumeration algorithms to search through the space of programs defined by this DSL, and there will also be exercises to modify the DSL to improve program performance.</p>
 <p>See the figure below for a visualization of the search tree using an example DSL.</p>
-<p><img alt="neurosym-enumeration.drawio (1).png" src="_images/dslRollout.png" /></p>
+<p><img alt="neurosym-enumeration.drawio (1).png" src="%21%5Bimg.png%5D(https://github.com/neurosymbolic-learning/Neurosymbolic_Tutorial/blob/popl23/imgs/dslRollout.png?raw=true)" /></p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="enumeration-base-dsl">
 <h1>Enumeration: Base DSL<a class="headerlink" href="#enumeration-base-dsl" title="Permalink to this headline">#</a></h1>
@@ -820,8 +820,8 @@ ALGORITHM END
 <section class="tex2jax_ignore mathjax_ignore" id="enumeration-morlet-dsl">
 <h1>Enumeration: Morlet DSL<a class="headerlink" href="#enumeration-morlet-dsl" title="Permalink to this headline">#</a></h1>
 <p>We now switch to using a DSL with a more powerful temporal filter. Optional: see <code class="docutils literal notranslate"><span class="pre">DSL_DICT_MOR</span></code> and <code class="docutils literal notranslate"><span class="pre">MorletFilterOp</span></code> in <code class="docutils literal notranslate"><span class="pre">dsl.ipynb</span></code> for the implementation of the filter. Instead of only taking the running average across a set window, the Morlet filter is a learnable temporal filter parametrized by <code class="docutils literal notranslate"><span class="pre">s</span></code> and <code class="docutils literal notranslate"><span class="pre">w</span></code>, where <code class="docutils literal notranslate"><span class="pre">s</span></code> controls frequency and <code class="docutils literal notranslate"><span class="pre">w</span></code> controls filter width:</p>
-<p><img alt="morlet.png" src="_images/morletEq.png" /></p>
-<p><img alt="morlet_filter.png" src="_images/morletViz.png" /></p>
+<p><img alt="morlet.png" src="https://github.com/neurosymbolic-learning/Neurosymbolic_Tutorial/blob/popl23/imgs/morletEq.png?raw=true" /></p>
+<p><img alt="morlet_filter.png" src="https://github.com/neurosymbolic-learning/Neurosymbolic_Tutorial/blob/popl23/imgs/morletViz.png?raw=true" /></p>
 <p>Do you observe anything common or different across program structures for the best and worst programs using the Morlet Filter? How does the performance compare to the base DSL?</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
