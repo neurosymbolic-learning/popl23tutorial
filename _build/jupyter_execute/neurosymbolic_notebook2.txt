@@ -1,0 +1,206 @@
+# (Optional) Are you loading data from within Google Drive?
+WITHIN_GDRIVE = False # otherwise: True
+
+# Setup repository and download toy CalMS21 data
+if not WITHIN_GDRIVE:
+  !git clone https://github.com/neurosymbolic-learning/Neurosymbolic_Tutorial.git /content/Neurosymbolic_Tutorial
+  %cd /content/Neurosymbolic_Tutorial/code_and_data
+  !gdown 1XPUF4n5iWhQw8v1ujAqDpFefJUVEoT4L && (unzip -o calms21_task1.zip; rm -rf calms21_task1.zip )
+else:
+  from google.colab import drive
+  drive.mount('/content/drive')
+  # Change this path to match the corect destination
+  %cd /content/drive/MyDrive/Neurosymbolic_Tutorial/code_and_data/
+  import os; assert os.path.exists("dsl.py"), f"Couldn't find `dsl.py` at this location {os.getcwd()}. HINT: Are you within `code_and_data`"
+  !gdown 1XPUF4n5iWhQw8v1ujAqDpFefJUVEoT4L && (unzip -o calms21_task1.zip; rm -rf calms21_task1.zip )
+
+
+import os
+import matplotlib.pyplot as plt
+import numpy as np
+
+!jupyter nbconvert --to python dsl.ipynb
+!jupyter nbconvert --to python near.ipynb
+
+!yes | python train.py \
+--algorithm enumeration \
+--exp_name investigation_base \
+--trial 1 \
+--seed 1 \
+--dsl_str "default" \
+--train_data "data/calms21_task1/train_data.npy" \
+--test_data "data/calms21_task1/test_data.npy" \
+--valid_data "data/calms21_task1/val_data.npy" \
+--train_labels "data/calms21_task1/train_investigation_labels.npy" \
+--test_labels "data/calms21_task1/test_investigation_labels.npy" \
+--valid_labels "data/calms21_task1/val_investigation_labels.npy" \
+--input_type "list" \
+--output_type "atom" \
+--input_size 18 \
+--output_size 1 \
+--num_labels 1 \
+--lossfxn "bcelogits" \
+--learning_rate 0.0001 \
+--symbolic_epochs 12 \
+--max_num_programs 25 \
+--class_weights "2.0"
+
+!yes | python train.py \
+--algorithm enumeration \
+--exp_name investigation_morlet \
+--trial 1 \
+--seed 1 \
+--dsl_str "morlet" \
+--train_data "data/calms21_task1/train_data.npy" \
+--test_data "data/calms21_task1/test_data.npy" \
+--valid_data "data/calms21_task1/val_data.npy" \
+--train_labels "data/calms21_task1/train_investigation_labels.npy" \
+--test_labels "data/calms21_task1/test_investigation_labels.npy" \
+--valid_labels "data/calms21_task1/val_investigation_labels.npy" \
+--input_type "list" \
+--output_type "atom" \
+--input_size 18 \
+--output_size 1 \
+--num_labels 1 \
+--lossfxn "bcelogits" \
+--learning_rate 0.0001 \
+--symbolic_epochs 12 \
+--max_num_programs 25 \
+--class_weights "2.0"
+
+!yes | python train.py \
+--algorithm enumeration \
+--exp_name investigation_neurosym \
+--trial 1 \
+--seed 1 \
+--dsl_str "neurosym" \
+--train_data "data/calms21_task1/train_data.npy" \
+--test_data "data/calms21_task1/test_data.npy" \
+--valid_data "data/calms21_task1/val_data.npy" \
+--train_labels "data/calms21_task1/train_investigation_labels.npy" \
+--test_labels "data/calms21_task1/test_investigation_labels.npy" \
+--valid_labels "data/calms21_task1/val_investigation_labels.npy" \
+--input_type "list" \
+--output_type "atom" \
+--input_size 18 \
+--output_size 1 \
+--num_labels 1 \
+--lossfxn "bcelogits" \
+--learning_rate 0.0001 \
+--symbolic_epochs 12 \
+--max_num_programs 25 \
+--class_weights "2.0"
+
+# Utility functions for visualizing run time vs accuracy
+
+def parse_runtime_f1_from_logs(log_files):
+
+  runtime = []
+  f1 = []
+
+  runtime_key = 'Total time elapsed is:'
+  f1_key = 'F1 score achieved is'
+
+  for item in log_files:
+    # If there's a list of list of files corresponding to different random seeds,
+    # we take the average
+    if len(item[0]) > 1:
+      seed_runtime = []
+      seed_f1 = []
+      for seed in item:
+        with open(os.path.join('results', seed, 'log.txt')) as f:
+            lines = f.readlines()
+
+            curr_runtimes = []
+            for line in lines:
+              if runtime_key in line:
+                curr_runtimes.append(float(line.split(runtime_key)[-1].strip()))
+            
+              if f1_key in line:
+                seed_f1.append(float(line.split(f1_key)[-1].strip()))
+            seed_runtime.append(curr_runtimes[-1])
+      runtime.append(np.mean(seed_runtime))
+      f1.append(np.mean(seed_f1))        
+    else:
+      # There's only 1 seed per run
+      with open(os.path.join('results', item, 'log.txt')) as f:
+        lines = f.readlines()
+
+      curr_runtimes = []
+      for line in lines:
+        if runtime_key in line:
+          curr_runtimes.append(float(line.split(runtime_key)[-1].strip()))
+      
+        if f1_key in line:
+          f1.append(float(line.split(f1_key)[-1].strip()))
+      runtime.append(curr_runtimes[-1])
+
+  return runtime, f1
+
+def plot_runtime_f1(runtime, f1, labels):
+  assert(len(runtime) == len(f1) == len(labels))
+
+  fig = plt.figure()
+  for i, item in enumerate(labels):
+    if len(item[0]) > 1:
+      item = item[0]
+    plt.scatter(runtime[i], f1[i], label = item.split('_sd')[0])
+
+  plt.xlim([10, 400])
+  plt.ylim([0.3, 0.75])  
+  plt.xlabel("Runtime (s)")
+  plt.ylabel("F1 score")  
+  plt.legend(loc='upper center', bbox_to_anchor=(0.5, 1 + 0.1*len(labels)))
+
+
+# Directory names to plot inside near_code/results
+run_names_to_plot = ['investigation_base_enumeration_sd_1_001', 
+                     'investigation_morlet_enumeration_sd_1_001',
+                     'investigation_neurosym_enumeration_sd_1_001']
+
+runtime, f1 = parse_runtime_f1_from_logs(run_names_to_plot)
+
+plot_runtime_f1(runtime, f1, run_names_to_plot)
+
+# Example of plotting with multiple random seeds
+# Directory names to plot inside near_code/results
+run_names_to_plot = ['investigation_base_enumeration_sd_1_001', 
+                     ['investigation_morlet_enumeration_sd_1_001',
+                      'investigation_morlet_enumeration_sd_2_001']]
+
+runtime, f1 = parse_runtime_f1_from_logs(run_names_to_plot)
+
+plot_runtime_f1(runtime, f1, run_names_to_plot)
+
+import pickle
+from near import print_program
+
+# Change the program name here if you want to print other programs
+saved_program = pickle.load(open('results/investigation_morlet_enumeration_sd_1_001/program.p', 'rb'))
+print(print_program(saved_program, ignore_constants = False))
+
+!jupyter nbconvert --to python dsl.ipynb
+!jupyter nbconvert --to python near.ipynb
+
+!yes | python train.py \
+--algorithm enumeration \
+--exp_name investigation_asym_morlet \
+--trial 1 \
+--seed 1 \
+--dsl_str "asym_morlet" \
+--train_data "data/calms21_task1/train_data.npy" \
+--test_data "data/calms21_task1/test_data.npy" \
+--valid_data "data/calms21_task1/val_data.npy" \
+--train_labels "data/calms21_task1/train_investigation_labels.npy" \
+--test_labels "data/calms21_task1/test_investigation_labels.npy" \
+--valid_labels "data/calms21_task1/val_investigation_labels.npy" \
+--input_type "list" \
+--output_type "atom" \
+--input_size 18 \
+--output_size 1 \
+--num_labels 1 \
+--lossfxn "bcelogits" \
+--learning_rate 0.0001 \
+--symbolic_epochs 12 \
+--max_num_programs 25 \
+--class_weights "2.0"

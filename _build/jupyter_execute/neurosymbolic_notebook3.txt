@@ -1,0 +1,400 @@
+# (Optional) Are you loading data from within Google Drive?
+WITHIN_GDRIVE = False # otherwise: True
+
+# Setup repository and download toy CalMS21 data
+if not WITHIN_GDRIVE:
+  !git clone https://github.com/neurosymbolic-learning/Neurosymbolic_Tutorial.git /content/Neurosymbolic_Tutorial
+  %cd /content/Neurosymbolic_Tutorial/code_and_data
+  !gdown 1XPUF4n5iWhQw8v1ujAqDpFefJUVEoT4L && (unzip -o calms21_task1.zip; rm -rf calms21_task1.zip )
+else:
+  from google.colab import drive
+  drive.mount('/content/drive')
+  # Change this path to match the corect destination
+  %cd /content/drive/MyDrive/Neurosymbolic_Tutorial/code_and_data/
+  import os; assert os.path.exists("dsl.py"), f"Couldn't find `dsl.py` at this location {os.getcwd()}. HINT: Are you within `code_and_data`"
+  !gdown 1XPUF4n5iWhQw8v1ujAqDpFefJUVEoT4L && (unzip -o calms21_task1.zip; rm -rf calms21_task1.zip )
+
+
+import os
+import matplotlib.pyplot as plt
+import numpy as np
+
+!jupyter nbconvert --to python dsl.ipynb
+!jupyter nbconvert --to python near.ipynb
+
+!pip install pytorch-lightning # Pytorch lightning is a wrapper around PyTorch.
+import os
+import torch, numpy as np
+import torch.nn as nn
+import torch.nn.functional as F
+import pytorch_lightning as pl
+from sklearn.metrics import f1_score, precision_score, recall_score
+
+# Utility Functions from Notebook 1
+
+class TrainConfig:
+    epochs: int = 20
+    batch_size: int = 32
+    lr: float = 3e-3
+    weight_decay: float = 0.0
+    train_size: int = 2000 # out of 5000
+    val_size: int = 1000 # out of 5000
+    test_size: int = 3000 # out of 3000
+    num_classes: int = 2
+
+config = TrainConfig()
+
+# Dataloader for the CalMS21 dataset
+class Calms21Task1Dataset(torch.utils.data.Dataset):
+    def __init__(self, data_path, investigations_path, transform=None, target_transform=None):
+        self.data = np.load(data_path)
+        self.investigations = np.load(investigations_path)
+        self.transform = transform
+        self.target_transform = target_transform
+
+    def __len__(self):
+        return len(self.data)
+
+    def __getitem__(self, idx):
+        x = self.data[idx]
+        y = self.investigations[idx]
+        if self.transform:
+            x = self.transform(x)
+        if self.target_transform:
+            y = self.target_transform(y)
+        return x, y
+
+
+class Calms21Task1DataModule(pl.LightningDataModule):
+    def __init__(self, data_dir, batch_size, transform=None, target_transform=None ):
+        super().__init__()
+        self.data_dir = data_dir
+        self.batch_size = batch_size
+        self.train_data_path = os.path.join(data_dir, "train_data.npy")
+        self.train_investigations_path = os.path.join(data_dir, "train_investigation_labels.npy")
+        self.test_data_path = os.path.join(data_dir, "test_data.npy")
+        self.test_investigations_path = os.path.join(data_dir, "test_investigation_labels.npy")
+        self.val_data_path = os.path.join(data_dir, "val_data.npy")
+        self.val_investigations_path = os.path.join(data_dir, "val_investigation_labels.npy")
+        self.transform = transform
+        self.target_transform = target_transform
+
+    def setup(self, stage=None):
+        self.train_dataset = Calms21Task1Dataset(self.train_data_path, self.train_investigations_path, self.transform, self.target_transform)
+        self.val_dataset = Calms21Task1Dataset(self.val_data_path, self.val_investigations_path, self.transform, self.target_transform)
+        self.test_dataset = Calms21Task1Dataset(self.test_data_path, self.test_investigations_path, self.transform, self.target_transform)
+
+    def train_dataloader(self):
+        return torch.utils.data.DataLoader(self.train_dataset, batch_size=self.batch_size, shuffle=True)
+    
+    def val_dataloader(self):
+        return torch.utils.data.DataLoader(self.val_dataset, batch_size=self.batch_size, shuffle=False)
+    
+    def test_dataloader(self):
+        return torch.utils.data.DataLoader(self.test_dataset, batch_size=self.batch_size, shuffle=False)
+
+dm = Calms21Task1DataModule(data_dir="data/calms21_task1/", batch_size=32, transform=None, target_transform=None)
+dm.setup(None)
+
+def train(model, datamodule, config):
+    trainer = pl.Trainer(gpus=0, max_epochs=config.epochs)
+    trainer.fit(model, datamodule)
+    return model
+
+# Evaluate using F1 score.
+test_labels = np.load("data/calms21_task1/test_investigation_labels.npy")
+
+def evaluate(model, data_loader, gt_labels):
+  predictions = []
+  for x,_ in data_loader:
+    predictions.append(torch.argmax(model(x), dim = -1))
+
+  predictions = torch.cat(predictions, dim = 0)
+
+  f1 = f1_score(test_labels, predictions, average="binary")
+  precision = precision_score(test_labels, predictions, average="binary")
+  recall = recall_score(test_labels, predictions, average="binary")
+
+  print("F1 score on test set: " + str(f1))
+  print("Precision on test set: " + str(precision))
+  print("Recall on test set: " + str(recall))
+
+  return predictions, f1, precision, recall
+
+# Complete program
+from dsl_compiler import ExpertProgram
+
+program = "Window13Avg( Or(MinResNoseKeypointDistSelect,AccelerationSelect) )"
+config.lr = 1e-2
+sample_model = ExpertProgram(program, config=config)
+
+# Use gradient descent to find parameters of multi-variable linear regression.
+sample_model = train(sample_model, dm, config=config)
+
+predictions_symbolic, _, _, _ = evaluate(sample_model, dm.test_dataloader(), test_labels)
+
+# Neurosymbolic
+program = "Window13Avg( Or(AtomToAtomModule,AtomToAtomModule) )"
+config.lr = 1e-2
+sample_model = ExpertProgram(program, config=config)
+
+# Use gradient descent to find parameters of multi-variable linear regression.
+sample_model = train(sample_model, dm, config=config)
+
+predictions_symbolic, _, _, _ = evaluate(sample_model, dm.test_dataloader(), test_labels)
+
+# This is an RNN = basically fully neural. How does the error compare?
+program = "ListToAtomModule"
+config.lr = 1e-2
+sample_model = ExpertProgram(program, config=config)
+
+# Use gradient descent to find parameters of multi-variable linear regression.
+sample_model = train(sample_model, dm, config=config)
+
+predictions_symbolic, _, _, _ = evaluate(sample_model, dm.test_dataloader(), test_labels)
+
+!yes| python train.py \
+--algorithm astar-near \
+--exp_name investigation_base \
+--trial 1 \
+--seed 1 \
+--dsl_str "default" \
+--train_data "data/calms21_task1/train_data.npy" \
+--test_data "data/calms21_task1/test_data.npy" \
+--valid_data "data/calms21_task1/val_data.npy" \
+--train_labels "data/calms21_task1/train_investigation_labels.npy" \
+--test_labels "data/calms21_task1/test_investigation_labels.npy" \
+--valid_labels "data/calms21_task1/val_investigation_labels.npy" \
+--input_type "list" \
+--output_type "atom" \
+--input_size 18 \
+--output_size 1 \
+--num_labels 1 \
+--lossfxn "bcelogits" \
+--frontier_capacity 8 \
+--max_num_children 10 \
+--max_depth 5 \
+--max_num_units 32 \
+--min_num_units 16 \
+--learning_rate 0.0001 \
+--neural_epochs 4 \
+--symbolic_epochs 12 \
+--class_weights "2.0"
+
+!yes| python train.py \
+--algorithm astar-near \
+--exp_name investigation_morlet \
+--trial 1 \
+--seed 1 \
+--dsl_str "morlet" \
+--train_data "data/calms21_task1/train_data.npy" \
+--test_data "data/calms21_task1/test_data.npy" \
+--valid_data "data/calms21_task1/val_data.npy" \
+--train_labels "data/calms21_task1/train_investigation_labels.npy" \
+--test_labels "data/calms21_task1/test_investigation_labels.npy" \
+--valid_labels "data/calms21_task1/val_investigation_labels.npy" \
+--input_type "list" \
+--output_type "atom" \
+--input_size 18 \
+--output_size 1 \
+--num_labels 1 \
+--lossfxn "bcelogits" \
+--frontier_capacity 8 \
+--max_num_children 10 \
+--max_depth 5 \
+--max_num_units 32 \
+--min_num_units 16 \
+--learning_rate 0.0001 \
+--neural_epochs 4 \
+--symbolic_epochs 12 \
+--class_weights "2.0"
+
+
+# Plotting utility functions
+
+def parse_runtime_f1_from_logs(log_files):
+
+  runtime = []
+  f1 = []
+
+  runtime_key = 'Total time elapsed is'
+  f1_key = 'F1 score achieved is'
+
+  for item in log_files:
+    # If there's a list of list of files corresponding to different random seeds,
+    # we take the average
+    if len(item[0]) > 1:
+      seed_runtime = []
+      seed_f1 = []
+      for seed in item:
+        with open(os.path.join('results', seed, 'log.txt')) as f:
+            lines = f.readlines()
+
+            curr_runtimes = []
+            for line in lines:
+              if runtime_key in line:
+                if line.split(runtime_key)[-1].startswith(':'):
+                  curr_runtimes.append(float(line.split(runtime_key)[-1].strip()[1:]))
+                else:
+                  curr_runtimes.append(float(line.split(runtime_key)[-1].strip()))
+            
+              if f1_key in line:
+                seed_f1.append(float(line.split(f1_key)[-1].strip()))
+            seed_runtime.append(curr_runtimes[-1])
+      runtime.append(np.mean(seed_runtime))
+      f1.append(np.mean(seed_f1))        
+    else:
+      # There's only 1 seed per run
+      with open(os.path.join('results', item, 'log.txt')) as f:
+        lines = f.readlines()
+
+      curr_runtimes = []
+      for line in lines:
+        if runtime_key in line:
+            if line.split(runtime_key)[-1].startswith(':'):
+              curr_runtimes.append(float(line.split(runtime_key)[-1].strip()[1:]))
+            else:
+              curr_runtimes.append(float(line.split(runtime_key)[-1].strip()))
+      
+        if f1_key in line:
+          f1.append(float(line.split(f1_key)[-1].strip()))
+      runtime.append(curr_runtimes[-1])
+
+  return runtime, f1
+
+def plot_runtime_f1(runtime, f1, labels):
+  assert(len(runtime) == len(f1) == len(labels))
+
+  fig = plt.figure()
+  for i, item in enumerate(labels):
+    if len(item[0]) > 1:
+      item = item[0]
+    plt.scatter(runtime[i], f1[i], label = item.split('_sd')[0])
+
+  plt.xlim([10, 400])
+  plt.ylim([0.3, 0.75])  
+  plt.xlabel("Runtime (s)")
+  plt.ylabel("F1 score")    
+  plt.legend(loc='upper center', bbox_to_anchor=(0.5, 1 + 0.1*len(labels)))
+
+
+# Directory names to plot inside near_code/results
+run_names_to_plot = ['investigation_base_enumeration_sd_1_001', 
+                     'investigation_morlet_enumeration_sd_1_001',
+                     'investigation_base_astar-near_sd_1_001',
+                     'investigation_morlet_astar-near_sd_1_001']
+
+runtime, f1 = parse_runtime_f1_from_logs(run_names_to_plot)
+
+plot_runtime_f1(runtime, f1, run_names_to_plot)
+
+!jupyter nbconvert --to python dsl.ipynb
+!jupyter nbconvert --to python near.ipynb
+
+!yes| python train.py \
+--algorithm astar-near \
+--exp_name investigation_morlet_3layer \
+--trial 1 \
+--seed 1 \
+--dsl_str "morlet" \
+--train_data "data/calms21_task1/train_data.npy" \
+--test_data "data/calms21_task1/test_data.npy" \
+--valid_data "data/calms21_task1/val_data.npy" \
+--train_labels "data/calms21_task1/train_investigation_labels.npy" \
+--test_labels "data/calms21_task1/test_investigation_labels.npy" \
+--valid_labels "data/calms21_task1/val_investigation_labels.npy" \
+--input_type "list" \
+--output_type "atom" \
+--input_size 18 \
+--output_size 1 \
+--num_labels 1 \
+--lossfxn "bcelogits" \
+--frontier_capacity 8 \
+--max_num_children 10 \
+--max_depth 5 \
+--max_num_units 16 \
+--min_num_units 8 \
+--learning_rate 0.0001 \
+--neural_epochs 4 \
+--symbolic_epochs 12 \
+--class_weights "2.0"
+
+!yes| python train.py \
+--algorithm iddfs-near \
+--exp_name investigation_morlet \
+--trial 1 \
+--seed 1 \
+--dsl_str "morlet" \
+--train_data "data/calms21_task1/train_data.npy" \
+--test_data "data/calms21_task1/test_data.npy" \
+--valid_data "data/calms21_task1/val_data.npy" \
+--train_labels "data/calms21_task1/train_investigation_labels.npy" \
+--test_labels "data/calms21_task1/test_investigation_labels.npy" \
+--valid_labels "data/calms21_task1/val_investigation_labels.npy" \
+--input_type "list" \
+--output_type "atom" \
+--input_size 18 \
+--output_size 1 \
+--num_labels 1 \
+--lossfxn "bcelogits" \
+--frontier_capacity 5 \
+--max_num_children 10 \
+--max_depth 5 \
+--max_num_units 16 \
+--min_num_units 8 \
+--learning_rate 0.0001 \
+--neural_epochs 4 \
+--symbolic_epochs 12 \
+--class_weights "2.0"
+
+!yes | python train.py \
+--algorithm enumeration \
+--exp_name investigation_morlet \
+--trial 1 \
+--seed 1 \
+--dsl_str "morlet" \
+--train_data "data/calms21_task1/train_data.npy" \
+--test_data "data/calms21_task1/test_data.npy" \
+--valid_data "data/calms21_task1/val_data.npy" \
+--train_labels "data/calms21_task1/train_mount_labels.npy" \
+--test_labels "data/calms21_task1/test_mount_labels.npy" \
+--valid_labels "data/calms21_task1/val_mount_labels.npy" \
+--input_type "list" \
+--output_type "atom" \
+--input_size 18 \
+--output_size 1 \
+--num_labels 1 \
+--lossfxn "bcelogits" \
+--learning_rate 0.0001 \
+--symbolic_epochs 12 \
+--max_num_programs 25 \
+--class_weights "2.0"
+
+!yes| python train.py \
+--algorithm astar-near \
+--exp_name investigation_morlet \
+--trial 1 \
+--seed 1 \
+--dsl_str "morlet" \
+--train_data "data/calms21_task1/train_data.npy" \
+--test_data "data/calms21_task1/test_data.npy" \
+--valid_data "data/calms21_task1/val_data.npy" \
+--train_labels "data/calms21_task1/train_mount_labels.npy" \
+--test_labels "data/calms21_task1/test_mount_labels.npy" \
+--valid_labels "data/calms21_task1/val_mount_labels.npy" \
+--input_type "list" \
+--output_type "atom" \
+--input_size 18 \
+--output_size 1 \
+--num_labels 1 \
+--lossfxn "bcelogits" \
+--frontier_capacity 8 \
+--max_num_children 10 \
+--max_depth 5 \
+--max_num_units 32 \
+--min_num_units 16 \
+--learning_rate 0.0001 \
+--neural_epochs 4 \
+--symbolic_epochs 12 \
+--class_weights "2.0"
+
