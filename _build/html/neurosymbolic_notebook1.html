@@ -10401,7 +10401,7 @@ Recall on test set: 0.7666666666666667
 </ul>
 <p>Sample program:</p>
 <p><code class="docutils literal notranslate"><span class="pre">Window5Avg(</span> <span class="pre">Or(AccelerationSelect,</span> <span class="pre">OverlapBboxesSelect)</span> <span class="pre">)</span></code> will calculate the acceleration and the bounding box overlap of the resident and intruder mice and use the running average across 5 frames in the input to predict whether the resident mouse is investigating or not. In general, the innermost functions are executed first and are used as inputs to the outer functions.</p>
-<p><strong>Note</strong>: The <code class="docutils literal notranslate"><span class="pre">program</span></code> parser is very primitive and does not account for training commas or special characters!</p>
+<p><strong>Note</strong>: The <code class="docutils literal notranslate"><span class="pre">program</span></code> parser is very primitive and does not account for trailing commas or special characters!</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">dsl_compiler</span> <span class="kn">import</span> <span class="n">ExpertProgram</span>

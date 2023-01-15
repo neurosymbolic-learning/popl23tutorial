@@ -634,7 +634,7 @@ plt.show(fig)
 # 
 # `Window5Avg( Or(AccelerationSelect, OverlapBboxesSelect) )` will calculate the acceleration and the bounding box overlap of the resident and intruder mice and use the running average across 5 frames in the input to predict whether the resident mouse is investigating or not. In general, the innermost functions are executed first and are used as inputs to the outer functions.
 # 
-# **Note**: The `program` parser is very primitive and does not account for training commas or special characters! 
+# **Note**: The `program` parser is very primitive and does not account for trailing commas or special characters! 
 
 # In[17]:
 
