@@ -3,6 +3,8 @@
 
 # # Notebook 1
 # 
+# [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/neurosymbolic-learning/Neurosymbolic_Tutorial/blob/popl23/neurosymbolic_notebook1.ipynb)
+# 
 # ## Instructions
 # 
 # **README** 
