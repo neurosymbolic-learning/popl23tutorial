@@ -10,7 +10,7 @@
 # * **Navigating this notebook on Google Colab:** There will be text blocks and code blocks throughout the notebook. The text blocks, such as this one, will contain instructions and questions for you to consider. The code blocks, such as the one below, will contain executible code.  Sometimes you will have to modify the code blocks following the instructions in the text blocks. You can run the code block by either pressing `control/cmd + enter` or by clicking the arrow on left-hand side as shown.
 #     ![img.png](https://github.com/neurosymbolic-learning/Neurosymbolic_Tutorial/blob/popl23/imgs/guide.png?raw=true)
 # 
-# * **Saving Work**: If you wish to save your work in this `.ipynb`, we recommend [downloading](https://colab.research.google.com/drive/158b2-QhmlNnftfP0nOhYZK3UnOTmcAo-?authuser=1#scrollTo=Yw_du6e3fShY&line=4&uniqifier=1) the compressed repository from GitHub, unzipping it, uploading it to Google Drive, opening this notebook from within Google Drive, and setting `WITHIN_GDRIVE` to `True`.
+# * **Saving Work**: If you wish to save your work in this `.ipynb`, we recommend [downloading](https://github.com/neurosymbolic-learning/Neurosymbolic_Tutorial/tree/popl23) the compressed repository from GitHub, unzipping it, uploading it to Google Drive, opening this notebook from within Google Drive, and setting `WITHIN_GDRIVE` to `True`.
 # 
 
 # In[ ]:
