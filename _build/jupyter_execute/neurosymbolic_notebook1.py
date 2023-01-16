@@ -41,6 +41,9 @@ else:
 
 import os
 import matplotlib.pyplot as plt
+from matplotlib import animation
+from matplotlib import colors
+from matplotlib import rc
 import numpy as np
 
 
